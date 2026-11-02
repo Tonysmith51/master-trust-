@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Smith Trust">
+    <title>ANTHONY SMITH | SMITH MASTER TRUST — Private Family Office Portal ($180M Vault)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter, Playfair Display & JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        obsidian: '#06040B',
+                        slateCard: '#0E091A',
+                        slateBorder: '#23163C',
+                        royal: {
+                            200: '#E9D5FF',
+                            300: '#D8B4FE',
+                            400: '#C084FC',
+                            500: '#A855F7',
+                            600: '#9333EA',
+                            700: '#7E22CE',
+                            900: '#3B0764',
+                        },
+                        emerald: {
+                            400: '#34D399',
+                            500: '#10B981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #06040B;
+            background-image: 
+                radial-gradient(circle at 12% 10%, rgba(168, 85, 247, 0.13) 0%, transparent 38%),
+                radial-gradient(circle at 88% 82%, rgba(126, 34, 206, 0.12) 0%, transparent 42%);
+            color: #F8FAFC;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Custom Range Slider Styling - Royal Purple Theme */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: #23163C;
+            border-radius: 999px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #A855F7;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -7px;
+            box-shadow: 0 0 14px rgba(168, 85, 247, 0.85);
+            border: 2px solid #06040B;
+        }
+        .card-glow {
+            box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.85), 0 0 24px -4px rgba(168, 85, 247, 0.18);
+        }
+        .metallic-card {
+            background: linear-gradient(135deg, #170E2B 0%, #090512 55%, #1E0F38 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .metallic-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.13) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #06040B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #23163C;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-28 selection:bg-royal-500 selection:text-white">
+
+    <!-- STICKY EXECUTIVE TOP HEADER -->
+    <header class="sticky top-0 z-40 bg-obsidian/95 backdrop-blur-md border-b border-slateBorder px-4 py-3">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <!-- Brand & Grantor Identity -->
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-royal-400 via-royal-600 to-royal-900 flex items-center justify-center text-white font-serif font-extrabold text-xl shadow-lg border border-royal-300/40">
+                    AS
+                </div>
+                <div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded bg-royal-500/15 text-royal-300 border border-royal-500/40 font-semibold">
+                            ANTHONY SMITH | SMITH MASTER TRUST
+                        </span>
+                        <span id="headerTotalAumBadge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-semibold">
+                            AUM: $194,169,000
+                        </span>
+                    </div>
+                    <h1 class="font-serif text-base sm:text-lg font-bold tracking-tight text-white mt-0.5">
+                        Private Family Office &amp; $180M Sovereign Wealth Portal
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex items-center gap-2">
+                <button onclick="resetMasterBlueprint()" title="Reset all data to Master Blueprint defaults" class="px-2.5 py-2 rounded-lg bg-slateCard border border-slateBorder hover:border-rose-500/50 text-xs font-mono text-gray-300 hover:text-rose-300 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span class="hidden md:inline">Reset Blueprint</span>
+                </button>
+                <button onclick="openInstallModal()" class="px-3 py-2 rounded-lg bg-slateCard border border-slateBorder hover:border-royal-500/50 text-xs font-medium text-gray-200 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-mobile-screen-button text-royal-400"></i>
+                    <span class="hidden sm:inline">Phone Install Guide</span>
+                </button>
+                <button onclick="downloadStandaloneApp()" class="px-3.5 py-2 rounded-lg bg-gradient-to-r from-royal-500 to-royal-700 text-white font-semibold text-xs flex items-center gap-1.5 shadow-md hover:brightness-110 active:scale-95 transition border border-royal-400/30">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Download App to Phone (.html)</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- DESKTOP & TABLET UNIFIED 6-TAB NAVIGATION BAR -->
+        <div class="max-w-6xl mx-auto mt-3 pt-2 border-t border-slateBorder/70 hidden sm:flex items-center gap-1.5 overflow-x-auto">
+            <button onclick="switchTab('vault')" id="dnav-vault" class="dnav-btn px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 bg-royal-500/20 text-royal-300 border border-royal-500/50 transition whitespace-nowrap">
+                <i class="fa-solid fa-vault"></i>
+                <span>1. $180M Core Vault</span>
+            </button>
+            <button onclick="switchTab('banks')" id="dnav-banks" class="dnav-btn px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 text-gray-400 hover:text-white border border-transparent transition whitespace-nowrap">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>2. Bank &amp; Money Market</span>
+                <span id="desktopBankCountBadge" class="px-1.5 py-0.2 rounded-full bg-royal-500/25 text-royal-300 font-mono text-[10px]">4</span>
+            </button>
+            <button onclick="switchTab('cards')" id="dnav-cards" class="dnav-btn px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 text-gray-400 hover:text-white border border-transparent transition whitespace-nowrap">
+                <i class="fa-solid fa-credit-card"></i>
+                <span>3. Family $19K Cards</span>
+                <span id="desktopCardCountBadge" class="px-1.5 py-0.2 rounded-full bg-royal-500/25 text-royal-300 font-mono text-[10px]">8</span>
+            </button>
+            <button onclick="switchTab('realestate')" id="dnav-realestate" class="dnav-btn px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 text-gray-400 hover:text-white border border-transparent transition whitespace-nowrap">
+                <i class="fa-solid fa-house-chimney-window"></i>
+                <span>4. 5 Trust Houses</span>
+                <span id="desktopHouseCountBadge" class="px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-300 font-mono text-[10px]">5</span>
+            </button>
+            <button onclick="switchTab('fleet')" id="dnav-fleet" class="dnav-btn px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 text-gray-400 hover:text-white border border-transparent transition whitespace-nowrap">
+                <i class="fa-solid fa-car-side"></i>
+                <span>5. Family Fleet (Cars)</span>
+                <span id="desktopFleetCountBadge" class="px-1.5 py-0.2 rounded-full bg-royal-500/25 text-royal-300 font-mono text-[10px]">5</span>
+            </button>
+            <button onclick="switchTab('llcs')" id="dnav-llcs" class="dnav-btn px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 text-gray-400 hover:text-white border border-transparent transition whitespace-nowrap">
+                <i class="fa-solid fa-sitemap"></i>
+                <span>6. Operating LLCs &amp; Waterfall</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PERSISTENT EXECUTIVE KPI RIBBON (6 METRICS) -->
+    <section class="max-w-6xl mx-auto px-4 pt-4">
+        <div class="bg-gradient-to-br from-slateCard via-slateCard to-[#170D2B] border border-slateBorder rounded-2xl p-4 sm:p-5 card-glow relative overflow-hidden">
+            <div class="absolute -right-12 -top-12 w-56 h-56 bg-royal-500/10 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 items-center">
+                <!-- KPI 1: $180M Core Vault -->
+                <div onclick="switchTab('vault')" class="cursor-pointer p-2.5 rounded-xl bg-obsidian/70 border border-slateBorder hover:border-royal-500/50 transition">
+                    <p class="text-[10px] font-mono uppercase tracking-wider text-gray-400">3-Legged Core Vault</p>
+                    <p id="kpiCoreVault" class="text-base sm:text-lg font-mono font-bold text-white mt-0.5">$180,000,000</p>
+                    <span class="text-[10px] text-royal-300 font-mono">100% Principal Protected</span>
+                </div>
+
+                <!-- KPI 2: Net Annual Trust Yield -->
+                <div onclick="switchTab('vault')" class="cursor-pointer p-2.5 rounded-xl bg-obsidian/70 border border-slateBorder hover:border-emerald-500/50 transition">
+                    <p class="text-[10px] font-mono uppercase tracking-wider text-gray-400">Total Annual Net Yield</p>
+                    <p id="kpiAnnualYield" class="text-base sm:text-lg font-mono font-bold text-emerald-400 mt-0.5">$6,563,930</p>
+                    <span id="kpiMonthlySweep" class="text-[10px] text-emerald-400/90 font-mono">$546,994 / mo Cash Flow</span>
+                </div>
+
+                <!-- KPI 3: Bank & Money Market Accounts -->
+                <div onclick="switchTab('banks')" class="cursor-pointer p-2.5 rounded-xl bg-obsidian/70 border border-slateBorder hover:border-royal-500/50 transition">
+                    <p class="text-[10px] font-mono uppercase tracking-wider text-gray-400">Bank &amp; Money Markets</p>
+                    <p id="kpiBankTotal" class="text-base sm:text-lg font-mono font-bold text-royal-300 mt-0.5">$4,350,000</p>
+                    <span id="kpiBankInterest" class="text-[10px] text-emerald-400 font-mono">+$199,850/yr MMA Yield</span>
+                </div>
+
+                <!-- KPI 4: Family $19K Cards -->
+                <div onclick="switchTab('cards')" class="cursor-pointer p-2.5 rounded-xl bg-obsidian/70 border border-slateBorder hover:border-royal-500/50 transition">
+                    <p class="text-[10px] font-mono uppercase tracking-wider text-gray-400">Family $19K Cards</p>
+                    <p id="kpiFamilyCardsTotal" class="text-base sm:text-lg font-mono font-bold text-royal-300 mt-0.5">$152,000 / yr</p>
+                    <span id="kpiFamilyCardsPct" class="text-[10px] text-gray-300 font-mono">Only 2.32% of Yield</span>
+                </div>
+
+                <!-- KPI 5: 5 Trust Houses & Fleet Equity -->
+                <div onclick="switchTab('fleet')" class="cursor-pointer p-2.5 rounded-xl bg-obsidian/70 border border-slateBorder hover:border-royal-500/50 transition">
+                    <p class="text-[10px] font-mono uppercase tracking-wider text-gray-400">5 Homes + Family Fleet</p>
+                    <p id="kpiRealEstateAndFleet" class="text-base sm:text-lg font-mono font-bold text-white mt-0.5">$9,319,000</p>
+                    <span id="kpiFleetSubtext" class="text-[10px] text-royal-300 font-mono">5 Homes + 5 Trust Cars</span>
+                </div>
+
+                <!-- KPI 6: Anthony's Pure Net Surplus -->
+                <div onclick="switchTab('llcs')" class="cursor-pointer p-2.5 rounded-xl bg-royal-900/30 border border-royal-500/50 hover:border-royal-400 transition">
+                    <p class="text-[10px] font-mono uppercase tracking-wider text-royal-200">Anthony's Pure Surplus</p>
+                    <p id="kpiPureSurplus" class="text-base sm:text-lg font-mono font-bold text-emerald-400 mt-0.5">$6,210,150 / yr</p>
+                    <span class="text-[10px] text-royal-200 font-mono"><i class="fa-solid fa-check-circle text-emerald-400 mr-1"></i>After Cards, Homes &amp; Cars</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN WORKSPACE CONTAINER -->
+    <main class="max-w-6xl mx-auto px-4 py-5 space-y-6">
+
+        <!-- =================================================================
+             WINDOW 1: EXECUTIVE OVERVIEW & $180M 3-LEGGED FIXED INCOME VAULT
+             ================================================================= -->
+        <div id="tab-vault" class="tab-view space-y-6">
+
+            <!-- Quick Navigation Grid to All Interactive Modules -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <div onclick="switchTab('banks')" class="cursor-pointer bg-slateCard hover:bg-[#19102C] border border-royal-500/40 rounded-xl p-3.5 flex items-center justify-between transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-royal-500/20 border border-royal-500/40 flex items-center justify-center text-royal-300">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-bold text-white">Bank &amp; Money Markets</h3>
+                            <p class="text-[11px] text-gray-400">Add/Edit Checking, Sweep &amp; MMAs</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-royal-400 text-xs"></i>
+                </div>
+
+                <div onclick="switchTab('cards')" class="cursor-pointer bg-slateCard hover:bg-[#19102C] border border-royal-500/40 rounded-xl p-3.5 flex items-center justify-between transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-royal-500/20 border border-royal-500/40 flex items-center justify-center text-royal-300">
+                            <i class="fa-solid fa-credit-card"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-bold text-white">Family $19K Gifting Cards</h3>
+                            <p class="text-[11px] text-gray-400">Brennan, Sister, Aunt, Parents &amp; All</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-royal-400 text-xs"></i>
+                </div>
+
+                <div onclick="switchTab('realestate')" class="cursor-pointer bg-slateCard hover:bg-[#19102C] border border-emerald-500/40 rounded-xl p-3.5 flex items-center justify-between transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+                            <i class="fa-solid fa-house-chimney"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-bold text-white">All 5 Trust-Managed Homes</h3>
+                            <p class="text-[11px] text-gray-400">Sanctuary, Sister, Aunt, Parents, Applegate</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-emerald-400 text-xs"></i>
+                </div>
+
+                <div onclick="switchTab('fleet')" class="cursor-pointer bg-slateCard hover:bg-[#19102C] border border-royal-500/40 rounded-xl p-3.5 flex items-center justify-between transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-royal-500/20 border border-royal-500/40 flex items-center justify-center text-royal-300">
+                            <i class="fa-solid fa-car-side"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xs font-bold text-white">Smith Family Fleet (Cars)</h3>
+                            <p class="text-[11px] text-gray-400">Add &amp; Remove Trust-Owned Vehicles</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-royal-400 text-xs"></i>
+                </div>
+            </div>
+
+            <!-- 3-Legged Fixed Income Engine Card ($180,000,000) -->
+            <div class="bg-slateCard border border-slateBorder rounded-2xl p-5 card-glow">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slateBorder pb-4 mb-5">
+                    <div>
+                        <span class="text-[10px] font-mono uppercase tracking-widest text-royal-300">Sovereign &amp; Municipal Tax-Free Engine</span>
+                        <h2 class="text-lg sm:text-xl font-serif font-bold text-white">The $180,000,000 Three-Legged Fixed Income Vault</h2>
+                        <p class="text-xs text-gray-400 mt-0.5">Upgraded $60M / $60M / $60M institutional allocation generating <span class="text-emerald-400 font-mono font-semibold">$530,340/month</span> from the core vault alone.</p>
+                    </div>
+                    <button onclick="resetVaultSliders()" class="px-3 py-1.5 rounded-lg bg-obsidian border border-royal-500/40 text-xs font-mono text-royal-300 hover:bg-royal-500/15 transition">
+                        <i class="fa-solid fa-arrows-rotate mr-1"></i> Restore $60M / $60M / $60M Split
+                    </button>
+                </div>
+
+                <!-- 3 Interactive Legs -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    
+                    <!-- Leg 1: Short-Term T-Bills ($60M Default) -->
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-4 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-royal-500/15 text-royal-300 border border-royal-500/30">LEG 1 • HIGH LIQUIDITY</span>
+                                <i class="fa-solid fa-landmark text-royal-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-white text-sm">Short-Term U.S. T-Bills</h3>
+                            <p class="text-[11px] text-gray-400 mt-0.5">3-to-6 Month Sovereign Liquidity • 100% State Tax Exempt</p>
+                            
+                            <div class="mt-4">
+                                <div class="flex justify-between text-xs font-mono mb-1">
+                                    <span class="text-gray-400">Principal Allocation:</span>
+                                    <span id="leg1AllocLabel" class="text-white font-bold">$60,000,000</span>
+                                </div>
+                                <input id="leg1Alloc" type="range" min="0" max="180000000" step="1000000" value="60000000" oninput="handleVaultInput()">
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="flex justify-between text-xs font-mono mb-1">
+                                    <span class="text-gray-400">Net After-Tax Yield:</span>
+                                    <span id="leg1RateLabel" class="text-emerald-400 font-bold">3.28%</span>
+                                </div>
+                                <input id="leg1Rate" type="range" min="1.0" max="6.5" step="0.01" value="3.28" oninput="handleVaultInput()">
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-slateBorder/80 flex justify-between items-center">
+                            <span class="text-xs text-gray-400">Annual Net Cash:</span>
+                            <span id="leg1AnnualCash" class="font-mono font-bold text-sm text-emerald-400">$1,968,000</span>
+                        </div>
+                    </div>
+
+                    <!-- Leg 2: 10-Year US Treasuries ($60M Default) -->
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-4 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-royal-500/15 text-royal-300 border border-royal-500/30">LEG 2 • LOCKED CORE YIELD</span>
+                                <i class="fa-solid fa-shield-halved text-royal-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-white text-sm">10-Year U.S. Treasury Notes</h3>
+                            <p class="text-[11px] text-gray-400 mt-0.5">Locked Multi-Year Coupon • 100% State Income Tax Exempt</p>
+                            
+                            <div class="mt-4">
+                                <div class="flex justify-between text-xs font-mono mb-1">
+                                    <span class="text-gray-400">Principal Allocation:</span>
+                                    <span id="leg2AllocLabel" class="text-white font-bold">$60,000,000</span>
+                                </div>
+                                <input id="leg2Alloc" type="range" min="0" max="180000000" step="1000000" value="60000000" oninput="handleVaultInput()">
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="flex justify-between text-xs font-mono mb-1">
+                                    <span class="text-gray-400">Net After-Tax Yield:</span>
+                                    <span id="leg2RateLabel" class="text-emerald-400 font-bold">3.45%</span>
+                                </div>
+                                <input id="leg2Rate" type="range" min="1.0" max="6.5" step="0.01" value="3.45" oninput="handleVaultInput()">
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-slateBorder/80 flex justify-between items-center">
+                            <span class="text-xs text-gray-400">Annual Net Cash:</span>
+                            <span id="leg2AnnualCash" class="font-mono font-bold text-sm text-emerald-400">$2,070,000</span>
+                        </div>
+                    </div>
+
+                    <!-- Leg 3: AAA Municipal Bonds ($60M Default) -->
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-4 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">LEG 3 • ZERO TAX DRAG</span>
+                                <i class="fa-solid fa-scale-balanced text-emerald-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-white text-sm">AAA Tax-Free Municipal Bonds</h3>
+                            <p class="text-[11px] text-gray-400 mt-0.5">100% Federal &amp; State Income Tax Exempt • Pure Net Yield</p>
+                            
+                            <div class="mt-4">
+                                <div class="flex justify-between text-xs font-mono mb-1">
+                                    <span class="text-gray-400">Principal Allocation:</span>
+                                    <span id="leg3AllocLabel" class="text-white font-bold">$60,000,000</span>
+                                </div>
+                                <input id="leg3Alloc" type="range" min="0" max="180000000" step="1000000" value="60000000" oninput="handleVaultInput()">
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="flex justify-between text-xs font-mono mb-1">
+                                    <span class="text-gray-400">Tax-Free Coupon:</span>
+                                    <span id="leg3RateLabel" class="text-emerald-400 font-bold">3.88%</span>
+                                </div>
+                                <input id="leg3Rate" type="range" min="1.0" max="6.5" step="0.01" value="3.8768" oninput="handleVaultInput()">
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-slateBorder/80 flex justify-between items-center">
+                            <span class="text-xs text-gray-400">Annual Net Cash:</span>
+                            <span id="leg3AnnualCash" class="font-mono font-bold text-sm text-emerald-400">$2,326,080</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Automated Cash Sweep Flow Box -->
+                <div class="mt-5 bg-gradient-to-r from-royal-900/40 via-obsidian to-emerald-950/30 border border-royal-500/40 rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-royal-500/20 border border-royal-500/40 flex items-center justify-center text-royal-300 shrink-0 mt-0.5">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-semibold text-white">Automated Monthly Cash Sweep to Anthony Smith's Private Bank</h4>
+                            <p class="text-xs text-gray-300 mt-0.5">
+                                Core <span id="vaultCorpusInlineText" class="text-white font-mono font-semibold">$180,000,000</span> principal remains 100% untouched inside the Smith Master Trust. Combined net interest from the Core Vault + Money Market accounts (<strong id="sweepInlineText" class="text-emerald-400 font-mono">$546,994/mo</strong>) sweeps on the 1st of every month to cover all 5 houses, the family car fleet, all family $19k cards, and Anthony's personal lifestyle.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-left sm:text-right shrink-0 w-full sm:w-auto border-t sm:border-t-0 border-slateBorder pt-2 sm:pt-0">
+                        <div class="text-[10px] font-mono uppercase text-gray-400">Daily Passive Accrual</div>
+                        <div id="dailyAccrualLabel" class="text-base font-mono font-bold text-royal-300">$17,983 / day</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Multi-Year Dynasty Compounding Visualizer -->
+            <div class="bg-slateCard border border-slateBorder rounded-2xl p-5 card-glow">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <div>
+                        <span class="text-[10px] font-mono uppercase tracking-widest text-royal-300">Multi-Year Surplus Accumulator</span>
+                        <h3 class="text-base font-serif font-bold text-white">Compound Wealth Growth (After Cards, 5 Homes, Fleet &amp; Personal Spend)</h3>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-gray-400">Projected Year <span id="projYearBadge">20</span> Liquid Vault:</span>
+                        <span id="projFutureValue" class="text-base font-mono font-bold text-royal-300 ml-1">$304,120,000</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 bg-obsidian/70 p-4 rounded-xl border border-slateBorder">
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-gray-300">Anthony's Personal Lifestyle Spend:</span>
+                            <span id="annualSpendLabel" class="text-royal-300 font-bold">$1,200,000 / yr</span>
+                        </div>
+                        <input id="annualSpendSlider" type="range" min="250000" max="5000000" step="50000" value="1200000" oninput="handleVaultInput()">
+                        <p class="text-[11px] text-gray-400 mt-1">
+                            Plus Cards (<span id="chartCardsDeduct" class="text-gray-200 font-mono">$152,000</span>), 5 Homes (<span id="chartHomesDeduct" class="text-gray-200 font-mono">$175,380</span>) &amp; Fleet (<span id="chartFleetDeduct" class="text-gray-200 font-mono">$26,400</span>). Unspent <span id="reinvestedSurplusLabel" class="text-emerald-400 font-mono font-semibold">$5,010,150/yr</span> compounds!
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-gray-300">Projection Horizon:</span>
+                            <span id="horizonYearsLabel" class="text-white font-bold">20 Years</span>
+                        </div>
+                        <input id="horizonYearsSlider" type="range" min="5" max="30" step="1" value="20" oninput="handleVaultInput()">
+                        <p class="text-[11px] text-gray-400 mt-1">Zero principal invasion • 100% sovereign &amp; municipal backed.</p>
+                    </div>
+                </div>
+
+                <!-- Dynamic Bar Chart Container -->
+                <div id="wealthChartBars" class="h-44 flex items-end gap-1.5 sm:gap-2 pt-6 pb-2 px-2 bg-obsidian/70 rounded-xl border border-slateBorder overflow-x-auto"></div>
+            </div>
+
+        </div>
+
+        <!-- =================================================================
+             WINDOW 2: BANK ACCOUNTS & MONEY MARKET ACCOUNTS MANAGER
+             ================================================================= -->
+        <div id="tab-banks" class="tab-view hidden space-y-6">
+
+            <div class="bg-slateCard border border-slateBorder rounded-2xl p-5 card-glow">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slateBorder pb-4 mb-5">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded bg-royal-500/20 text-royal-300 border border-royal-500/40">
+                                Tier-1 Institutional Cash &amp; Money Market Sweep
+                            </span>
+                            <span class="text-[10px] font-mono text-emerald-400">
+                                <i class="fa-solid fa-shield-halved mr-1"></i>FDIC / SIPC &amp; Treasury Backed
+                            </span>
+                        </div>
+                        <h2 class="text-lg sm:text-xl font-serif font-bold text-white mt-1">
+                            Smith Family Office — Bank Accounts &amp; Money Market Accounts
+                        </h2>
+                        <p class="text-xs text-gray-400 mt-0.5">
+                            Manage operating checking accounts, private bank sweep accounts, and institutional money market funds outside the $180M 3-Legged Vault.
+                        </p>
+                    </div>
+
+                    <button onclick="openAddBankModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-royal-500 to-royal-700 text-white font-semibold text-xs flex items-center gap-1.5 shadow-md hover:brightness-110 transition border border-royal-400/30">
+                        <i class="fa-solid fa-plus-circle"></i>
+                        <span>+ Add Bank / Money Market Account</span>
+                    </button>
+                </div>
+
+                <!-- Summary Metrics Ribbon for Bank & MMA -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Active Accounts</span>
+                        <div id="bankMetricCount" class="text-lg font-mono font-bold text-white mt-0.5">4 Accounts</div>
+                        <span class="text-[10px] text-royal-300 font-mono">Checking &amp; Money Markets</span>
+                    </div>
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Total Liquid Cash Balance</span>
+                        <div id="bankMetricBalance" class="text-lg font-mono font-bold text-royal-300 mt-0.5">$4,350,000</div>
+                        <span class="text-[10px] text-gray-400 font-mono">Immediate Same-Day Wire</span>
+                    </div>
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Blended MMA / Bank APY</span>
+                        <div id="bankMetricBlendedApy" class="text-lg font-mono font-bold text-emerald-400 mt-0.5">4.59% APY</div>
+                        <span class="text-[10px] text-emerald-400 font-mono">Institutional Tier Rates</span>
+                    </div>
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Annual MMA / Bank Interest</span>
+                        <div id="bankMetricAnnualInterest" class="text-lg font-mono font-bold text-emerald-400 mt-0.5">+$199,850 / yr</div>
+                        <span id="bankMetricMonthlyInterest" class="text-[10px] text-gray-400 font-mono">+$16,654 / mo passive</span>
+                    </div>
+                </div>
+
+                <!-- Interactive Bank & Money Market Cards Grid -->
+                <div id="bankAccountsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+            </div>
+
+        </div>
+
+        <!-- =================================================================
+             WINDOW 3: FAMILY GIFTING CARDS & $19,000 ANNUAL EXCLUSION MANAGER
+             ================================================================= -->
+        <div id="tab-cards" class="tab-view hidden space-y-6">
+
+            <div class="bg-slateCard border border-slateBorder rounded-2xl p-5 card-glow">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slateBorder pb-4 mb-5">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded bg-royal-500/20 text-royal-300 border border-royal-500/40">
+                                IRC §2503(b) Compliant • Zero Gift Tax Reporting
+                            </span>
+                            <span class="text-[10px] font-mono text-emerald-400">
+                                <i class="fa-solid fa-rotate mr-1"></i>Auto-Resets Jan 1 Every Year
+                            </span>
+                        </div>
+                        <h2 class="text-lg sm:text-xl font-serif font-bold text-white mt-1">
+                            Smith Family Office Private Client Cards ($19,000/Yr Cap Per Person)
+                        </h2>
+                        <p class="text-xs text-gray-400 mt-0.5">
+                            Pre-loaded with <strong>Brennan, Sister, Aunt, Mother, Father, Both Cousins (Aunt's Children), and Donna R. Smith</strong>. Hard-capped at <strong>$19,000/yr ($1,583.33/mo)</strong> so 0% of Anthony's lifetime exemption is ever touched.
+                        </p>
+                    </div>
+
+                    <button onclick="openAddCardModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-royal-500 to-royal-700 text-white font-semibold text-xs flex items-center gap-1.5 shadow-md hover:brightness-110 transition border border-royal-400/30">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>+ Add New Cardholder / Gift Recipient</span>
+                    </button>
+                </div>
+
+                <!-- Summary Metrics Ribbon for Family Gifting Cards -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Active Family Cards</span>
+                        <div id="cardsMetricCount" class="text-lg font-mono font-bold text-white mt-0.5">8 Recipients (8 Active)</div>
+                        <span class="text-[10px] text-royal-300 font-mono">$19,000/yr Max Cap Each</span>
+                    </div>
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Max Annual Gift Budget</span>
+                        <div id="cardsMetricMaxAnnual" class="text-lg font-mono font-bold text-royal-300 mt-0.5">$152,000 / yr</div>
+                        <span id="cardsMetricMonthly" class="text-[10px] text-gray-400 font-mono">$12,666.67 / mo total</span>
+                    </div>
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">% of Total Trust Yield</span>
+                        <div id="cardsMetricYieldPct" class="text-lg font-mono font-bold text-emerald-400 mt-0.5">2.32% of Yield</div>
+                        <span class="text-[10px] text-emerald-400 font-mono">Leaves 97.68% Untouched</span>
+                    </div>
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">IRS Form 709 / Gift Tax</span>
+                        <div class="text-lg font-mono font-bold text-emerald-400 mt-0.5">$0.00 Due</div>
+                        <span class="text-[10px] text-emerald-400 font-mono">100% Annual Exclusion Safe</span>
+                    </div>
+                </div>
+
+                <!-- Metallic Visual Family Cards Grid -->
+                <div id="familyCardsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+            </div>
+
+        </div>
+
+        <!-- =================================================================
+             WINDOW 4: SMITH REAL ESTATE LLC — ALL 5 TRUST-MANAGED HOUSES
+             ================================================================= -->
+        <div id="tab-realestate" class="tab-view hidden space-y-6">
+
+            <div class="bg-slateCard border border-slateBorder rounded-2xl p-5 card-glow">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slateBorder pb-4 mb-5">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                                100% Owned by Smith Real Estate LLC
+                            </span>
+                            <span class="text-[10px] font-mono text-royal-300">
+                                <i class="fa-solid fa-shield-cat mr-1"></i>Zero Imputed Rent Gift-Tax Shield
+                            </span>
+                        </div>
+                        <h2 class="text-lg sm:text-xl font-serif font-bold text-white mt-1">
+                            Smith Real Estate LLC — All 5 Trust-Managed Family Estates
+                        </h2>
+                        <p class="text-xs text-gray-300 mt-1 max-w-3xl leading-relaxed">
+                            <strong>Beneficiary Residency Legal Shield:</strong> Because every property below is titled inside <strong>Smith Real Estate LLC</strong> (wholly owned by the Smith Master Trust) and Anthony's family members are designated Trust Beneficiaries, they occupy these homes <strong>100% rent-free with zero imputed fair-market rent gift tax</strong> and complete probate bypass.
+                        </p>
+                    </div>
+
+                    <button onclick="openAddPropertyModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-royal-500 to-royal-700 text-white font-semibold text-xs flex items-center gap-1.5 shadow-md hover:brightness-110 transition border border-royal-400/30">
+                        <i class="fa-solid fa-house-medical"></i>
+                        <span>+ Add Additional Trust Property</span>
+                    </button>
+                </div>
+
+                <!-- Real Estate Portfolio Summary Ribbon -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Total Trust Estates</span>
+                        <div id="reMetricCount" class="text-lg font-mono font-bold text-white mt-0.5">5 Properties</div>
+                        <span class="text-[10px] text-emerald-400 font-mono">100% Debt-Free in LLC</span>
+                    </div>
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Total Real Estate Equity</span>
+                        <div id="reMetricValuation" class="text-lg font-mono font-bold text-royal-300 mt-0.5">$8,769,000</div>
+                        <span class="text-[10px] text-gray-400 font-mono">Includes Applegate Payoff</span>
+                    </div>
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Annual Tax, Ins. &amp; Upkeep</span>
+                        <div id="reMetricEscrow" class="text-lg font-mono font-bold text-emerald-400 mt-0.5">$175,380 / yr</div>
+                        <span class="text-[10px] text-gray-400 font-mono">Auto-Paid by Trust Yield</span>
+                    </div>
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Imputed Rent Gift Tax</span>
+                        <div class="text-lg font-mono font-bold text-emerald-400 mt-0.5">$0.00 Exposure</div>
+                        <span class="text-[10px] text-emerald-400 font-mono">Beneficiary Occupancy Rule</span>
+                    </div>
+                </div>
+
+                <!-- All 5 Properties Interactive Grid -->
+                <div id="propertiesGridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+            </div>
+
+        </div>
+
+        <!-- =================================================================
+             WINDOW 5: SMITH FAMILY FLEET MANAGER (ADD & REMOVE CARS)
+             ================================================================= -->
+        <div id="tab-fleet" class="tab-view hidden space-y-6">
+
+            <div class="bg-slateCard border border-slateBorder rounded-2xl p-5 card-glow">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slateBorder pb-4 mb-5">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded bg-royal-500/20 text-royal-300 border border-royal-500/40">
+                                Smith Fleet &amp; Mobility Holdings LLC
+                            </span>
+                            <span class="text-[10px] font-mono text-emerald-400">
+                                <i class="fa-solid fa-car-On mr-1"></i>Commercial Umbrella &amp; Trust Insured
+                            </span>
+                        </div>
+                        <h2 class="text-lg sm:text-xl font-serif font-bold text-white mt-1">
+                            The Smith Family Fleet — Trust-Owned Vehicles Manager
+                        </h2>
+                        <p class="text-xs text-gray-300 mt-1 max-w-3xl leading-relaxed">
+                            Add, manage, or remove vehicles from the family fleet. All fleet vehicles are titled debt-free under the Trust's asset holding structure with full commercial umbrella liability coverage, annual registration, and maintenance funded by the Trust yield.
+                        </p>
+                    </div>
+
+                    <button onclick="openAddVehicleModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-royal-500 to-royal-700 text-white font-semibold text-xs flex items-center gap-1.5 shadow-md hover:brightness-110 transition border border-royal-400/30">
+                        <i class="fa-solid fa-car"></i>
+                        <span>+ Add Vehicle to Family Fleet</span>
+                    </button>
+                </div>
+
+                <!-- Fleet Summary Metrics Ribbon -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Active Fleet Vehicles</span>
+                        <div id="fleetMetricCount" class="text-lg font-mono font-bold text-white mt-0.5">5 Vehicles</div>
+                        <span class="text-[10px] text-royal-300 font-mono">100% Lien-Free Titles</span>
+                    </div>
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Total Fleet Valuation</span>
+                        <div id="fleetMetricValue" class="text-lg font-mono font-bold text-royal-300 mt-0.5">$550,000</div>
+                        <span class="text-[10px] text-gray-400 font-mono">Included in Trust AUM</span>
+                    </div>
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Annual Ins. &amp; Maintenance</span>
+                        <div id="fleetMetricUpkeep" class="text-lg font-mono font-bold text-emerald-400 mt-0.5">$26,400 / yr</div>
+                        <span class="text-[10px] text-gray-400 font-mono">Auto-Paid by Trust Yield</span>
+                    </div>
+                    <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-3.5">
+                        <span class="text-[10px] font-mono uppercase text-gray-400">Fleet Liability Shield</span>
+                        <div class="text-lg font-mono font-bold text-emerald-400 mt-0.5">$10M Umbrella</div>
+                        <span class="text-[10px] text-emerald-400 font-mono">Ring-Fenced LLC Policy</span>
+                    </div>
+                </div>
+
+                <!-- Interactive Vehicles Grid -->
+                <div id="fleetGridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+            </div>
+
+        </div>
+
+        <!-- =================================================================
+             WINDOW 6: OPERATING LLCs, WATERFALL & ESTATE BLUEPRINT
+             ================================================================= -->
+        <div id="tab-llcs" class="tab-view hidden space-y-6">
+
+            <!-- Master Organizational Flowchart -->
+            <div class="bg-slateCard border border-slateBorder rounded-2xl p-5 card-glow">
+                <span class="text-[10px] font-mono uppercase tracking-widest text-royal-300">Master Holding Architecture &amp; Liability Shield</span>
+                <h2 class="text-lg sm:text-xl font-serif font-bold text-white mt-0.5 mb-4">
+                    Anthony Smith — $180M Master Trust &amp; Subsidiary LLC Ecosystem
+                </h2>
+
+                <div class="bg-obsidian/80 border border-slateBorder rounded-xl p-5">
+                    <div class="flex flex-col items-center">
+                        <!-- Grantor Node -->
+                        <div class="px-5 py-2 rounded-full bg-royal-500/20 border border-royal-500 text-royal-200 font-mono text-xs font-bold">
+                            GRANTOR, SOLE TRUSTEE &amp; PRIMARY BENEFICIARY: ANTHONY SMITH
+                        </div>
+                        <div class="h-4 w-0.5 bg-royal-500/60"></div>
+
+                        <!-- Parent Trust Node -->
+                        <div class="w-full max-w-xl bg-gradient-to-r from-royal-600/25 via-slateCard to-royal-600/25 border-2 border-royal-500 rounded-2xl p-4 text-center shadow-lg">
+                            <div class="text-[10px] font-mono uppercase text-royal-300">Revocable Living Trust • 100% Probate Exempt</div>
+                            <div class="font-serif font-bold text-white text-lg">THE SMITH MASTER TRUST ($180,000,000 VAULT)</div>
+                            <div class="text-xs text-emerald-400 font-mono mt-0.5">$60M T-Bills + $60M 10-Yr Treasuries + $60M AAA Munis = $6,364,080/yr Vault Yield</div>
+                        </div>
+
+                        <div class="h-6 w-0.5 bg-royal-500/60"></div>
+                        <div class="w-4/5 h-0.5 bg-royal-500/40"></div>
+
+                        <!-- 4 Subsidiary Operating & Holding Pillars -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full mt-4">
+                            <!-- LLC 1 -->
+                            <div onclick="switchTab('realestate')" class="cursor-pointer bg-slateCard hover:border-emerald-400 border border-emerald-500/40 rounded-xl p-4 transition">
+                                <div class="flex items-center justify-between text-[10px] font-mono text-emerald-400 uppercase">
+                                    <span>100% Trust Subsidiary #1</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </div>
+                                <h4 class="font-bold text-white text-sm mt-1"><i class="fa-solid fa-house-chimney-window text-emerald-400 mr-1.5"></i>Smith Real Estate LLC</h4>
+                                <p class="text-xs text-gray-300 mt-1.5 leading-relaxed">
+                                    Holds all <strong>5 Family Properties ($8.769M)</strong> debt-free, including the Applegate mortgage payoff ($163,351.23).
+                                </p>
+                            </div>
+
+                            <!-- LLC 2 -->
+                            <div onclick="switchTab('fleet')" class="cursor-pointer bg-slateCard hover:border-royal-400 border border-royal-500/40 rounded-xl p-4 transition">
+                                <div class="flex items-center justify-between text-[10px] font-mono text-royal-300 uppercase">
+                                    <span>100% Trust Subsidiary #2</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </div>
+                                <h4 class="font-bold text-white text-sm mt-1"><i class="fa-solid fa-car-side text-royal-400 mr-1.5"></i>Smith Fleet Holdings LLC</h4>
+                                <p class="text-xs text-gray-300 mt-1.5 leading-relaxed">
+                                    Holds all <strong>Family Fleet Vehicles</strong> with commercial umbrella insurance and full annual maintenance escrow.
+                                </p>
+                            </div>
+
+                            <!-- LLC 3 -->
+                            <div class="bg-slateCard border border-royal-500/40 rounded-xl p-4">
+                                <div class="flex items-center justify-between text-[10px] font-mono text-royal-300 uppercase">
+                                    <span>100% Trust Subsidiary #3</span>
+                                    <span>$500K Seed</span>
+                                </div>
+                                <h4 class="font-bold text-white text-sm mt-1"><i class="fa-solid fa-bottle-water text-royal-400 mr-1.5"></i>Smith Beverages LLC</h4>
+                                <p class="text-xs text-gray-300 mt-1.5 leading-relaxed">
+                                    Produces <strong>"Smith's Pop"</strong> prebiotic craft sodas. Seeded with <strong>$500,000</strong>. Pays $5K/mo sponsorship to Smith Media.
+                                </p>
+                            </div>
+
+                            <!-- LLC 4 -->
+                            <div class="bg-slateCard border border-royal-500/40 rounded-xl p-4">
+                                <div class="flex items-center justify-between text-[10px] font-mono text-royal-300 uppercase">
+                                    <span>100% Trust Subsidiary #4</span>
+                                    <span>+$60K/Yr</span>
+                                </div>
+                                <h4 class="font-bold text-white text-sm mt-1"><i class="fa-solid fa-film text-royal-400 mr-1.5"></i>Smith Media LLC</h4>
+                                <p class="text-xs text-gray-300 mt-1.5 leading-relaxed">
+                                    Content &amp; production studio receiving a <strong>$5,000/month ($60,000/yr)</strong> B2B marketing retainer from Smith Beverages LLC.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Smith Beverages LLC ("Smith's Pop") & Complete Waterfall -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Smith Beverages LLC -->
+                <div class="bg-slateCard border border-slateBorder rounded-2xl p-5 card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] font-mono uppercase tracking-widest text-royal-300">Commercial Beverage Brand</span>
+                            <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-royal-500/20 text-royal-300 border border-royal-500/40">Smith's Pop</span>
+                        </div>
+                        <h3 class="text-base font-serif font-bold text-white">Smith Beverages LLC — Revenue Simulator</h3>
+                        <p class="text-xs text-gray-400 mt-0.5">$500,000 Trust Seed Capital • Functional Healthy Craft Soda Line</p>
+
+                        <div class="mt-4 space-y-3 bg-obsidian/70 p-4 rounded-xl border border-slateBorder">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-gray-400">Trust Capital Injection:</span>
+                                <span class="font-mono font-bold text-white">$500,000 (Paid-In)</span>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-mono mb-1">
+                                    <span class="text-gray-300">Monthly Cans Sold ($3.50/can):</span>
+                                    <span id="cansSoldLabel" class="text-royal-300 font-bold">45,000 cans/mo</span>
+                                </div>
+                                <input id="cansSoldSlider" type="range" min="10000" max="250000" step="5000" value="45000" oninput="updateBeverageMetrics()">
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slateBorder text-xs">
+                                <div>
+                                    <span class="text-gray-400 block">Gross Annual Sales:</span>
+                                    <span id="bevAnnualRev" class="font-mono font-bold text-white">$1,890,000</span>
+                                </div>
+                                <div>
+                                    <span class="text-gray-400 block">Net Profit (After $60K Media):</span>
+                                    <span id="bevAnnualProfit" class="font-mono font-bold text-emerald-400">$469,200 / yr</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slateBorder text-[11px] text-gray-400 flex items-center justify-between">
+                        <span>Sponsorship Outflow to Smith Media LLC:</span>
+                        <span class="font-mono text-royal-300 font-semibold">-$5,000 / mo (-$60,000/yr IRC §162 Deductible)</span>
+                    </div>
+                </div>
+
+                <!-- Annual Cash-Flow Waterfall Breakdown -->
+                <div class="bg-slateCard border border-slateBorder rounded-2xl p-5 card-glow flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-400">Complete Family Office Accounting</span>
+                        <h3 class="text-base font-serif font-bold text-white mt-0.5">Annual Yield Waterfall ($180M Vault + Money Markets)</h3>
+                        <p class="text-xs text-gray-400 mt-0.5">How Anthony's annual tax-sheltered yield covers every commitment effortlessly:</p>
+
+                        <div class="mt-4 space-y-2 bg-obsidian/70 p-4 rounded-xl border border-slateBorder text-xs font-mono">
+                            <div class="flex justify-between items-center text-emerald-400 font-bold">
+                                <span>+ $180M 3-Legged Vault Net Yield:</span>
+                                <span id="wfGrossVaultYield">+$6,364,080</span>
+                            </div>
+                            <div class="flex justify-between items-center text-emerald-300">
+                                <span>+ Bank &amp; Money Market Interest:</span>
+                                <span id="wfBankYield">+$199,850</span>
+                            </div>
+                            <div class="flex justify-between items-center text-royal-300">
+                                <span>- All Family $19K Gifting Cards (<span id="wfCardCount">8</span>):</span>
+                                <span id="wfCardsCost">-$152,000</span>
+                            </div>
+                            <div class="flex justify-between items-center text-royal-300">
+                                <span>- All 5 Trust Homes Tax, Ins &amp; Upkeep:</span>
+                                <span id="wfHomesCost">-$175,380</span>
+                            </div>
+                            <div class="flex justify-between items-center text-royal-300">
+                                <span>- Family Fleet Insurance &amp; Upkeep (<span id="wfFleetCount">5</span> Cars):</span>
+                                <span id="wfFleetCost">-$26,400</span>
+                            </div>
+                            <div class="pt-2.5 border-t border-slateBorder flex justify-between items-center text-sm font-bold text-white">
+                                <span>= ANTHONY'S PURE LIQUID SURPLUS:</span>
+                                <span id="wfNetSurplus" class="text-emerald-400">$6,210,150 / yr</span>
+                            </div>
+                            <div class="flex justify-between items-center text-[11px] text-royal-300">
+                                <span>Monthly Unencumbered Cash to Anthony:</span>
+                                <span id="wfMonthlySurplus">$517,513 / month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slateBorder text-[11px] text-emerald-400 flex items-center gap-1.5">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>All 5 homes + 8 cards + 5 fleet vehicles consume only <strong id="wfTotalBurdenPct">5.39%</strong> of annual trust yield!</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- MOBILE BOTTOM NAVIGATION BAR (6 COMPACT TABS) -->
+    <nav class="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-obsidian/95 backdrop-blur-lg border-t border-slateBorder px-1.5 py-1.5">
+        <div class="max-w-md mx-auto grid grid-cols-6 gap-1">
+            <button onclick="switchTab('vault')" id="mnav-vault" class="mnav-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-royal-300 bg-royal-500/20">
+                <i class="fa-solid fa-vault text-sm mb-0.5"></i>
+                <span class="text-[9px] font-medium">$180M</span>
+            </button>
+            <button onclick="switchTab('banks')" id="mnav-banks" class="mnav-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-gray-400">
+                <i class="fa-solid fa-building-columns text-sm mb-0.5"></i>
+                <span class="text-[9px] font-medium">Banks</span>
+            </button>
+            <button onclick="switchTab('cards')" id="mnav-cards" class="mnav-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-gray-400">
+                <i class="fa-solid fa-credit-card text-sm mb-0.5"></i>
+                <span class="text-[9px] font-medium">Cards</span>
+            </button>
+            <button onclick="switchTab('realestate')" id="mnav-realestate" class="mnav-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-gray-400">
+                <i class="fa-solid fa-house-chimney text-sm mb-0.5"></i>
+                <span class="text-[9px] font-medium">5 Homes</span>
+            </button>
+            <button onclick="switchTab('fleet')" id="mnav-fleet" class="mnav-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-gray-400">
+                <i class="fa-solid fa-car-side text-sm mb-0.5"></i>
+                <span class="text-[9px] font-medium">Fleet</span>
+            </button>
+            <button onclick="switchTab('llcs')" id="mnav-llcs" class="mnav-btn flex flex-col items-center justify-center py-1.5 rounded-xl text-gray-400">
+                <i class="fa-solid fa-sitemap text-sm mb-0.5"></i>
+                <span class="text-[9px] font-medium">LLCs</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- =================================================================
+         MODAL 1: ADD / EDIT FAMILY GIFTING CARDHOLDER
+         ================================================================= -->
+    <div id="cardModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slateCard border border-royal-500/40 rounded-2xl max-w-md w-full p-5 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slateBorder pb-3">
+                <h3 id="cardModalTitle" class="font-serif font-bold text-white text-base">Add / Edit Family Office Cardholder</h3>
+                <button onclick="closeCardModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <input type="hidden" id="editCardIndex" value="-1">
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="block text-gray-400 mb-1">Recipient Full Name</label>
+                    <input id="cardHolderNameInput" type="text" placeholder="e.g., Brennan" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-gray-400 mb-1">Relationship / Role Badge</label>
+                    <input id="cardHolderRoleInput" type="text" placeholder="e.g., Key Recipient • Priority Family Card" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-gray-400 mb-1">Current YTD Spend ($0 to $19,000 Annual Exclusion Cap)</label>
+                    <input id="cardHolderYtdInput" type="number" min="0" max="19000" step="100" value="4750" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white font-mono focus:border-royal-500 outline-none">
+                </div>
+            </div>
+            <div class="flex gap-2 pt-2">
+                <button onclick="saveCardModal()" class="flex-1 py-2.5 rounded-xl bg-royal-600 text-white font-semibold text-xs hover:brightness-110">
+                    Save Family Office Card
+                </button>
+                <button onclick="closeCardModal()" class="px-4 py-2.5 rounded-xl bg-obsidian border border-slateBorder text-gray-300 text-xs">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================
+         MODAL 2: PROPERTY MANAGEMENT DEEP-DIVE / EDIT DRAWER
+         ================================================================= -->
+    <div id="propertyModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slateCard border border-emerald-500/40 rounded-2xl max-w-lg w-full p-5 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-slateBorder pb-3">
+                <div>
+                    <span class="text-[10px] font-mono uppercase text-emerald-400">Smith Real Estate LLC • Deed Management</span>
+                    <h3 id="propModalTitle" class="font-serif font-bold text-white text-base">Property Details &amp; Escrow</h3>
+                </div>
+                <button onclick="closePropertyModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <input type="hidden" id="editPropIndex" value="-1">
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="block text-gray-400 mb-1">Property Name / Title</label>
+                    <input id="propNameInput" type="text" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-400 mb-1">Location / Address</label>
+                        <input id="propLocationInput" type="text" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1">Designated Occupant / Beneficiary</label>
+                        <input id="propOccupantInput" type="text" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-400 mb-1">Property Valuation / Allocation ($)</label>
+                        <input id="propValueInput" type="number" step="5000" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white font-mono focus:border-royal-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1">Annual Tax, Ins. &amp; Maintenance Escrow ($)</label>
+                        <input id="propEscrowInput" type="number" step="500" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white font-mono focus:border-royal-500 outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-400 mb-1">Legal Structure &amp; Maintenance Notes</label>
+                    <textarea id="propNotesInput" rows="3" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none"></textarea>
+                </div>
+            </div>
+            <div class="flex gap-2 pt-2">
+                <button onclick="savePropertyModal()" class="flex-1 py-2.5 rounded-xl bg-royal-600 text-white font-semibold text-xs hover:brightness-110">
+                    Save Property to Smith Real Estate LLC
+                </button>
+                <button onclick="closePropertyModal()" class="px-4 py-2.5 rounded-xl bg-obsidian border border-slateBorder text-gray-300 text-xs">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================
+         MODAL 3: ADD / EDIT BANK OR MONEY MARKET ACCOUNT
+         ================================================================= -->
+    <div id="bankModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slateCard border border-royal-500/40 rounded-2xl max-w-md w-full p-5 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slateBorder pb-3">
+                <div>
+                    <span class="text-[10px] font-mono uppercase text-royal-300">Private Banking &amp; Liquidity</span>
+                    <h3 id="bankModalTitle" class="font-serif font-bold text-white text-base">Add Bank / Money Market Account</h3>
+                </div>
+                <button onclick="closeBankModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <input type="hidden" id="editBankIndex" value="-1">
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="block text-gray-400 mb-1">Financial Institution &amp; Account Name</label>
+                    <input id="bankInstInput" type="text" placeholder="e.g., J.P. Morgan Private Bank Operating" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-400 mb-1">Account Category</label>
+                        <select id="bankTypeInput" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none">
+                            <option value="Money Market Account (MMA)">Money Market Account (MMA)</option>
+                            <option value="Private Bank Operating Checking">Private Bank Operating Checking</option>
+                            <option value="Treasury Sweep Account">Treasury Sweep Account</option>
+                            <option value="High-Yield Savings / Escrow">High-Yield Savings / Escrow</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1">Last 4 Digits of Account #</label>
+                        <input id="bankNumInput" type="text" maxlength="4" placeholder="8920" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white font-mono focus:border-royal-500 outline-none">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-400 mb-1">Current Balance ($)</label>
+                        <input id="bankBalanceInput" type="number" step="10000" value="1000000" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white font-mono focus:border-royal-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1">Interest Rate / APY (%)</label>
+                        <input id="bankApyInput" type="number" step="0.05" value="4.85" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white font-mono focus:border-royal-500 outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-400 mb-1">Account Purpose / Sweep Instructions</label>
+                    <input id="bankNotesInput" type="text" placeholder="e.g., Receives monthly $530K vault sweep for family bills" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none">
+                </div>
+            </div>
+            <div class="flex gap-2 pt-2">
+                <button onclick="saveBankModal()" class="flex-1 py-2.5 rounded-xl bg-royal-600 text-white font-semibold text-xs hover:brightness-110">
+                    Save Bank / Money Market Account
+                </button>
+                <button onclick="closeBankModal()" class="px-4 py-2.5 rounded-xl bg-obsidian border border-slateBorder text-gray-300 text-xs">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================
+         MODAL 4: ADD / EDIT FAMILY FLEET VEHICLE
+         ================================================================= -->
+    <div id="vehicleModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slateCard border border-royal-500/40 rounded-2xl max-w-md w-full p-5 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slateBorder pb-3">
+                <div>
+                    <span class="text-[10px] font-mono uppercase text-royal-300">Smith Fleet Holdings LLC</span>
+                    <h3 id="vehicleModalTitle" class="font-serif font-bold text-white text-base">Add / Edit Family Fleet Vehicle</h3>
+                </div>
+                <button onclick="closeVehicleModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <input type="hidden" id="editVehicleIndex" value="-1">
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="block text-gray-400 mb-1">Year, Make &amp; Model</label>
+                    <input id="vehNameInput" type="text" placeholder="e.g., 2026 Cadillac Escalade-V AWD" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-400 mb-1">Assigned Driver / Beneficiary</label>
+                        <input id="vehDriverInput" type="text" placeholder="e.g., Anthony Smith" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1">Vehicle Class / Tag</label>
+                        <input id="vehTagInput" type="text" placeholder="e.g., Flagship Luxury SUV" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-400 mb-1">Asset Value ($)</label>
+                        <input id="vehValueInput" type="number" step="2500" value="125000" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white font-mono focus:border-royal-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 mb-1">Annual Ins. &amp; Maintenance ($)</label>
+                        <input id="vehInsInput" type="number" step="250" value="5400" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white font-mono focus:border-royal-500 outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-400 mb-1">Garaging &amp; Title Notes</label>
+                    <input id="vehNotesInput" type="text" placeholder="e.g., 100% Trust LLC Titled • Garaged at Primary Sanctuary" class="w-full px-3 py-2 rounded-xl bg-obsidian border border-slateBorder text-white focus:border-royal-500 outline-none">
+                </div>
+            </div>
+            <div class="flex gap-2 pt-2">
+                <button onclick="saveVehicleModal()" class="flex-1 py-2.5 rounded-xl bg-royal-600 text-white font-semibold text-xs hover:brightness-110">
+                    Save Vehicle to Family Fleet
+                </button>
+                <button onclick="closeVehicleModal()" class="px-4 py-2.5 rounded-xl bg-obsidian border border-slateBorder text-gray-300 text-xs">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================
+         MODAL 5: PHONE INSTALL GUIDE MODAL
+         ================================================================= -->
+    <div id="installModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slateCard border border-royal-500/40 rounded-2xl max-w-md w-full p-5 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slateBorder pb-3">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-mobile-screen text-royal-400 text-lg"></i>
+                    <h3 class="font-serif font-bold text-white text-base">Save &amp; Install on Anthony's Phone</h3>
+                </div>
+                <button onclick="closeInstallModal()" class="text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="space-y-3 text-xs text-gray-300 leading-relaxed">
+                <div class="p-3 rounded-xl bg-obsidian border border-slateBorder">
+                    <div class="font-semibold text-royal-300 mb-1"><i class="fa-solid fa-download mr-1"></i> Step 1: Tap "Download App to Phone (.html)"</div>
+                    Tap the purple download button in the top bar. It packages your entire customized portal ($180M Vault, Bank &amp; Money Market Accounts, Family Fleet Cars, 8 Family Cards, and 5 Houses) into a single offline file named <code class="text-emerald-400">Anthony_Smith_Master_Trust.html</code>.
+                </div>
+
+                <div class="p-3 rounded-xl bg-obsidian border border-slateBorder">
+                    <div class="font-semibold text-white mb-1"><i class="fa-brands fa-apple mr-1"></i> iPhone / iPad (Safari &amp; Files)</div>
+                    Open the downloaded file in <strong>Files</strong> or <strong>Safari</strong>, tap the <strong>Share</strong> icon, and tap <strong>"Add to Home Screen"</strong> for a full-screen Private Bank icon.
+                </div>
+
+                <div class="p-3 rounded-xl bg-obsidian border border-slateBorder">
+                    <div class="font-semibold text-emerald-400 mb-1"><i class="fa-brands fa-android mr-1"></i> Android (Chrome)</div>
+                    Open the file in <strong>Chrome</strong>, tap the <strong>3-dot menu</strong>, and select <strong>"Add to Home screen"</strong>.
+                </div>
+            </div>
+
+            <div class="flex gap-2 pt-2">
+                <button onclick="downloadStandaloneApp()" class="flex-1 py-2.5 rounded-xl bg-royal-600 text-white font-semibold text-xs hover:brightness-110">
+                    <i class="fa-solid fa-download mr-1"></i> Download Offline App Now
+                </button>
+                <button onclick="closeInstallModal()" class="px-4 py-2.5 rounded-xl bg-obsidian border border-slateBorder text-gray-300 text-xs">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- APPLICATION STATE & INTERACTIVE ENGINE -->
+    <script>
+        const STORAGE_KEY = 'ANTHONY_SMITH_MASTER_TRUST_PURPLE_180M_V3';
+        const fmtUSD = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
+        const fmtUSDExact = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(num);
+
+        // Master Blueprint Default State ($180,000,000 Vault + Banks/MMAs + Family Fleet + 8 Cards + 5 Houses)
+        function getMasterBlueprintDefaults() {
+            return {
+                vault: {
+                    leg1Alloc: 60000000,
+                    leg1Rate: 3.28,
+                    leg2Alloc: 60000000,
+                    leg2Rate: 3.45,
+                    leg3Alloc: 60000000,
+                    leg3Rate: 3.8768,
+                    annualPersonalSpend: 1200000,
+                    horizonYears: 20
+                },
+                bankAccounts: [
+                    {
+                        id: 'b1',
+                        institution: 'J.P. Morgan Private Bank — Master Operating',
+                        type: 'Private Bank Operating Checking',
+                        acctNum: '8801',
+                        balance: 850000,
+                        apy: 2.25,
+                        notes: 'Primary clearing account receiving the $530,340/mo vault cash sweep.'
+                    },
+                    {
+                        id: 'b2',
+                        institution: 'Fidelity Institutional Government Money Market',
+                        type: 'Money Market Account (MMA)',
+                        acctNum: '4419',
+                        balance: 1750000,
+                        apy: 4.95,
+                        notes: 'Daily liquid institutional money market reserve for tax & real estate escrows.'
+                    },
+                    {
+                        id: 'b3',
+                        institution: 'Charles Schwab Value Advantage Money Market',
+                        type: 'Money Market Account (MMA)',
+                        acctNum: '7290',
+                        balance: 1250000,
+                        apy: 4.88,
+                        notes: 'High-yield liquid reserve for family fleet acquisitions & capital opportunities.'
+                    },
+                    {
+                        id: 'b4',
+                        institution: 'Flagstar / Michigan Private Client Sweep',
+                        type: 'Treasury Sweep Account',
+                        acctNum: '3104',
+                        balance: 500000,
+                        apy: 4.62,
+                        notes: 'Local Michigan private banking liquidity & family card settlement buffer.'
+                    }
+                ],
+                familyCards: [
+                    { id: 'c1', name: 'Brennan', role: 'Key Recipient • Active Family Office Card', ytdSpend: 4750, annualCap: 19000, frozen: false, cardNum: '8841' },
+                    { id: 'c2', name: 'Sister', role: 'Trust Beneficiary • Active Family Office Card', ytdSpend: 6200, annualCap: 19000, frozen: false, cardNum: '4092' },
+                    { id: 'c3', name: 'Aunt', role: 'Trust Beneficiary • Active Family Office Card', ytdSpend: 5100, annualCap: 19000, frozen: false, cardNum: '7734' },
+                    { id: 'c4', name: 'Mother (Parent 1)', role: 'Trust Beneficiary • Active Family Office Card', ytdSpend: 4800, annualCap: 19000, frozen: false, cardNum: '9105' },
+                    { id: 'c5', name: 'Father (Parent 2)', role: 'Trust Beneficiary • Active Family Office Card', ytdSpend: 4800, annualCap: 19000, frozen: false, cardNum: '9108' },
+                    { id: 'c6', name: "Cousin 1 (Aunt's Child 1)", role: 'Extended Family • Annual Exclusion Card', ytdSpend: 3200, annualCap: 19000, frozen: false, cardNum: '5521' },
+                    { id: 'c7', name: "Cousin 2 (Aunt's Child 2)", role: 'Extended Family • Annual Exclusion Card', ytdSpend: 3200, annualCap: 19000, frozen: false, cardNum: '5529' },
+                    { id: 'c8', name: 'Donna R. Smith', role: 'Family Recipient • Active Family Office Card', ytdSpend: 3950, annualCap: 19000, frozen: false, cardNum: '6190' }
+                ],
+                properties: [
+                    {
+                        id: 'p1',
+                        title: 'Property #1: Anthony Smith Primary Estate Sanctuary',
+                        location: 'Flagship Luxury Compound',
+                        occupant: 'Anthony Smith (Grantor & Trustee)',
+                        valuation: 5549000,
+                        annualEscrow: 110980,
+                        badge: 'FLAGSHIP SANCTUARY • DEBT-FREE',
+                        notes: 'Held 100% debt-free inside Smith Real Estate LLC. Full property tax, insurance, security, and grounds maintenance funded directly by the Trust yield.'
+                    },
+                    {
+                        id: 'p2',
+                        title: "Property #2: Sister's Private Residence",
+                        location: 'Traverse City / Michigan Model',
+                        occupant: 'Sister (Designated Trust Beneficiary)',
+                        valuation: 1395000,
+                        annualEscrow: 27900,
+                        badge: 'BENEFICIARY RENT-FREE OCCUPANCY',
+                        notes: 'Zero imputed rent gift-tax exposure under Beneficiary Residency Shield. Property taxes, insurance, utilities, and upkeep paid by Smith Real Estate LLC.'
+                    },
+                    {
+                        id: 'p3',
+                        title: "Property #3: Aunt's Private Residence",
+                        location: 'Dedicated Single-Family Estate',
+                        occupant: 'Aunt (Designated Trust Beneficiary)',
+                        valuation: 650000,
+                        annualEscrow: 13000,
+                        badge: '100% ZERO GIFT-TAX STRUCTURE',
+                        notes: 'Titled in Smith Real Estate LLC. Aunt occupies rent-free as a scheduled Trust Beneficiary with full property tax escrow and home maintenance covered.'
+                    },
+                    {
+                        id: 'p4',
+                        title: "Property #4: Parents' Homestead & Land Estate",
+                        location: 'Family Residence & Acreage',
+                        occupant: 'Mother & Father (Trust Beneficiaries)',
+                        valuation: 850000,
+                        annualEscrow: 17000,
+                        badge: 'BENEFICIARY LIFE-ESTATE SHIELD',
+                        notes: 'Protected family homestead and land parcel. Complete property tax, home insurance, and seasonal grounds maintenance covered by Trust LLC.'
+                    },
+                    {
+                        id: 'p5',
+                        title: 'Property #5: Applegate Legacy Residence',
+                        location: '6555 Suerwer Rd, Applegate, MI',
+                        occupant: 'Smith Family Legacy Asset',
+                        valuation: 325000,
+                        annualEscrow: 6500,
+                        badge: '$163,351.23 MORTGAGE PAYOFF & DEED TRANSFER',
+                        notes: 'Includes immediate $163,351.23 loan payoff and warranty deed transfer into Smith Real Estate LLC. Full tax escrow and tree/grounds maintenance covered.'
+                    }
+                ],
+                fleet: [
+                    {
+                        id: 'v1',
+                        name: '2026 Cadillac Escalade-V ESV AWD',
+                        driver: 'Anthony Smith (Grantor)',
+                        tag: 'FLAGSHIP COMMAND SUV',
+                        value: 168000,
+                        annualUpkeep: 7200,
+                        notes: '100% Trust LLC Titled • Garaged at Anthony Smith Primary Estate Sanctuary.'
+                    },
+                    {
+                        id: 'v2',
+                        name: '2026 Porsche 911 Turbo S Coupe',
+                        driver: 'Anthony Smith (Grantor)',
+                        tag: 'EXECUTIVE GRAND TOURER',
+                        value: 235000,
+                        annualUpkeep: 8400,
+                        notes: '100% Trust LLC Titled • Collector & weekend touring asset under Fleet Umbrella.'
+                    },
+                    {
+                        id: 'v3',
+                        name: '2026 GMC Yukon Denali Ultimate 4WD',
+                        driver: 'Mother & Father (Parents)',
+                        tag: 'FAMILY HOMESTEAD AWD',
+                        value: 102000,
+                        annualUpkeep: 4600,
+                        notes: '100% Trust LLC Titled • All-weather Michigan winter safety & comfort package.'
+                    },
+                    {
+                        id: 'v4',
+                        name: '2026 BMW X5 xDrive40i AWD',
+                        driver: 'Sister',
+                        tag: 'BENEFICIARY LUXURY SUV',
+                        value: 76000,
+                        annualUpkeep: 3800,
+                        notes: '100% Trust LLC Titled • Full insurance, tires, and scheduled maintenance covered.'
+                    },
+                    {
+                        id: 'v5',
+                        name: '2026 Lexus RX 350h Luxury AWD',
+                        driver: 'Aunt / Brennan Shared Fleet',
+                        tag: 'EXECUTIVE HYBRID CRUISER',
+                        value: 69000,
+                        annualUpkeep: 3400,
+                        notes: '100% Trust LLC Titled • Covered under Smith Fleet Holdings commercial policy.'
+                    }
+                ]
+            };
+        }
+
+        let appState = getMasterBlueprintDefaults();
+
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (parsed && parsed.vault && parsed.familyCards && parsed.properties) {
+                        appState = {
+                            ...getMasterBlueprintDefaults(),
+                            ...parsed
+                        };
+                    }
+                }
+            } catch (e) {
+                console.warn('Could not read localStorage, using defaults.');
+            }
+        }
+
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+            } catch (e) {
+                console.warn('Could not persist state to localStorage.');
+            }
+        }
+
+        function resetMasterBlueprint() {
+            appState = getMasterBlueprintDefaults();
+            saveState();
+            syncSlidersFromState();
+            recalculateAll();
+        }
+
+        function syncSlidersFromState() {
+            document.getElementById('leg1Alloc').value = appState.vault.leg1Alloc;
+            document.getElementById('leg1Rate').value = appState.vault.leg1Rate;
+            document.getElementById('leg2Alloc').value = appState.vault.leg2Alloc;
+            document.getElementById('leg2Rate').value = appState.vault.leg2Rate;
+            document.getElementById('leg3Alloc').value = appState.vault.leg3Alloc;
+            document.getElementById('leg3Rate').value = appState.vault.leg3Rate;
+            document.getElementById('annualSpendSlider').value = appState.vault.annualPersonalSpend;
+            document.getElementById('horizonYearsSlider').value = appState.vault.horizonYears;
+        }
+
+        function resetVaultSliders() {
+            appState.vault = getMasterBlueprintDefaults().vault;
+            saveState();
+            syncSlidersFromState();
+            recalculateAll();
+        }
+
+        // Tab Navigation (Syncs Desktop & Mobile Nav Bars)
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('tab-' + tabId);
+            if (target) target.classList.remove('hidden');
+
+            // Update Desktop Nav
+            document.querySelectorAll('.dnav-btn').forEach(btn => {
+                btn.classList.remove('bg-royal-500/20', 'text-royal-300', 'border-royal-500/50');
+                btn.classList.add('text-gray-400', 'border-transparent');
+            });
+            const dBtn = document.getElementById('dnav-' + tabId);
+            if (dBtn) {
+                dBtn.classList.remove('text-gray-400', 'border-transparent');
+                dBtn.classList.add('bg-royal-500/20', 'text-royal-300', 'border-royal-500/50');
+            }
+
+            // Update Mobile Nav
+            document.querySelectorAll('.mnav-btn').forEach(btn => {
+                btn.classList.remove('text-royal-300', 'bg-royal-500/20');
+                btn.classList.add('text-gray-400');
+            });
+            const mBtn = document.getElementById('mnav-' + tabId);
+            if (mBtn) {
+                mBtn.classList.remove('text-gray-400');
+                mBtn.classList.add('text-royal-300', 'bg-royal-500/20');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleVaultInput() {
+            appState.vault.leg1Alloc = parseFloat(document.getElementById('leg1Alloc').value);
+            appState.vault.leg1Rate = parseFloat(document.getElementById('leg1Rate').value);
+            appState.vault.leg2Alloc = parseFloat(document.getElementById('leg2Alloc').value);
+            appState.vault.leg2Rate = parseFloat(document.getElementById('leg2Rate').value);
+            appState.vault.leg3Alloc = parseFloat(document.getElementById('leg3Alloc').value);
+            appState.vault.leg3Rate = parseFloat(document.getElementById('leg3Rate').value);
+            appState.vault.annualPersonalSpend = parseFloat(document.getElementById('annualSpendSlider').value);
+            appState.vault.horizonYears = parseInt(document.getElementById('horizonYearsSlider').value);
+            saveState();
+            recalculateAll();
+        }
+
+        // Master Calculation & Render Routine
+        function recalculateAll() {
+            const v = appState.vault;
+            const cash1 = v.leg1Alloc * (v.leg1Rate / 100);
+            const cash2 = v.leg2Alloc * (v.leg2Rate / 100);
+            const cash3 = v.leg3Alloc * (v.leg3Rate / 100);
+
+            const totalVaultCorpus = v.leg1Alloc + v.leg2Alloc + v.leg3Alloc;
+            const vaultAnnualYield = cash1 + cash2 + cash3;
+
+            // Bank & Money Market Totals
+            let totalBankBalance = 0;
+            let totalBankInterest = 0;
+            (appState.bankAccounts || []).forEach(b => {
+                const bal = Number(b.balance) || 0;
+                const apy = Number(b.apy) || 0;
+                totalBankBalance += bal;
+                totalBankInterest += bal * (apy / 100);
+            });
+
+            // Combined Annual Net Yield (Core Vault + Money Market Interest)
+            const totalAnnualYield = vaultAnnualYield + totalBankInterest;
+            const monthlySweep = totalAnnualYield / 12;
+            const dailyAccrual = totalAnnualYield / 365;
+
+            // Family Cards Totals
+            const activeCards = appState.familyCards.filter(c => !c.frozen);
+            const totalFamilyAnnualCap = activeCards.length * 19000;
+            const yieldPctCards = totalAnnualYield > 0 ? ((totalFamilyAnnualCap / totalAnnualYield) * 100).toFixed(2) : '0.00';
+
+            // Real Estate Totals
+            let totalRealEstateVal = 0;
+            let totalRealEstateEscrow = 0;
+            appState.properties.forEach(p => {
+                totalRealEstateVal += Number(p.valuation) || 0;
+                totalRealEstateEscrow += Number(p.annualEscrow) || 0;
+            });
+
+            // Family Fleet Totals
+            let totalFleetVal = 0;
+            let totalFleetUpkeep = 0;
+            (appState.fleet || []).forEach(car => {
+                totalFleetVal += Number(car.value) || 0;
+                totalFleetUpkeep += Number(car.annualUpkeep) || 0;
+            });
+
+            // Pure Net Surplus for Anthony after all family cards, 5 houses & family fleet
+            const pureSurplusBeforePersonal = totalAnnualYield - totalFamilyAnnualCap - totalRealEstateEscrow - totalFleetUpkeep;
+            const reinvestedSurplus = Math.max(0, pureSurplusBeforePersonal - v.annualPersonalSpend);
+
+            // Total AUM ($180M Vault + Bank/MMA Cash + Real Estate Equity + Fleet Equity + $500k Smith Beverages Seed)
+            const totalAUM = totalVaultCorpus + totalBankBalance + totalRealEstateVal + totalFleetVal + 500000;
+
+            // Update Top Header & KPI Ribbon
+            document.getElementById('headerTotalAumBadge').textContent = 'AUM: ' + fmtUSD(totalAUM);
+            document.getElementById('desktopBankCountBadge').textContent = (appState.bankAccounts || []).length;
+            document.getElementById('desktopCardCountBadge').textContent = appState.familyCards.length;
+            document.getElementById('desktopHouseCountBadge').textContent = appState.properties.length;
+            document.getElementById('desktopFleetCountBadge').textContent = (appState.fleet || []).length;
+
+            document.getElementById('kpiCoreVault').textContent = fmtUSD(totalVaultCorpus);
+            document.getElementById('kpiAnnualYield').textContent = fmtUSD(totalAnnualYield);
+            document.getElementById('kpiMonthlySweep').textContent = fmtUSD(monthlySweep) + ' / mo Cash Flow';
+            document.getElementById('kpiBankTotal').textContent = fmtUSD(totalBankBalance);
+            document.getElementById('kpiBankInterest').textContent = '+' + fmtUSD(totalBankInterest) + '/yr MMA Yield';
+            document.getElementById('kpiFamilyCardsTotal').textContent = fmtUSD(totalFamilyAnnualCap) + ' / yr';
+            document.getElementById('kpiFamilyCardsPct').textContent = `Only ${yieldPctCards}% of Yield`;
+            document.getElementById('kpiRealEstateAndFleet').textContent = fmtUSD(totalRealEstateVal + totalFleetVal);
+            document.getElementById('kpiFleetSubtext').textContent = `${appState.properties.length} Homes + ${(appState.fleet || []).length} Trust Cars`;
+            document.getElementById('kpiPureSurplus').textContent = fmtUSD(pureSurplusBeforePersonal) + ' / yr';
+
+            // Update Window 1 Labels
+            document.getElementById('leg1AllocLabel').textContent = fmtUSD(v.leg1Alloc);
+            document.getElementById('leg1RateLabel').textContent = v.leg1Rate.toFixed(2) + '%';
+            document.getElementById('leg1AnnualCash').textContent = fmtUSD(cash1);
+
+            document.getElementById('leg2AllocLabel').textContent = fmtUSD(v.leg2Alloc);
+            document.getElementById('leg2RateLabel').textContent = v.leg2Rate.toFixed(2) + '%';
+            document.getElementById('leg2AnnualCash').textContent = fmtUSD(cash2);
+
+            document.getElementById('leg3AllocLabel').textContent = fmtUSD(v.leg3Alloc);
+            document.getElementById('leg3RateLabel').textContent = v.leg3Rate.toFixed(2) + '%';
+            document.getElementById('leg3AnnualCash').textContent = fmtUSD(cash3);
+
+            document.getElementById('vaultCorpusInlineText').textContent = fmtUSD(totalVaultCorpus);
+            document.getElementById('sweepInlineText').textContent = fmtUSD(monthlySweep) + '/mo';
+            document.getElementById('dailyAccrualLabel').textContent = fmtUSD(dailyAccrual) + ' / day';
+
+            document.getElementById('annualSpendLabel').textContent = fmtUSD(v.annualPersonalSpend) + ' / yr';
+            document.getElementById('chartCardsDeduct').textContent = fmtUSD(totalFamilyAnnualCap);
+            document.getElementById('chartHomesDeduct').textContent = fmtUSD(totalRealEstateEscrow);
+            document.getElementById('chartFleetDeduct').textContent = fmtUSD(totalFleetUpkeep);
+            document.getElementById('reinvestedSurplusLabel').textContent = fmtUSD(reinvestedSurplus) + '/yr';
+            document.getElementById('horizonYearsLabel').textContent = v.horizonYears + ' Years';
+            document.getElementById('projYearBadge').textContent = v.horizonYears;
+
+            const blendedRate = totalVaultCorpus > 0 ? (vaultAnnualYield / totalVaultCorpus) : 0.035356;
+            renderProjectionBars(totalVaultCorpus + totalBankBalance, reinvestedSurplus, blendedRate, v.horizonYears);
+
+            // Render Window 2 (Bank & Money Market Accounts)
+            renderBankAccounts(totalBankBalance, totalBankInterest);
+
+            // Render Window 3 (Family Cards)
+            renderFamilyCards(totalAnnualYield);
+
+            // Render Window 4 (5 Properties)
+            renderPropertiesGrid(totalRealEstateVal, totalRealEstateEscrow);
+
+            // Render Window 5 (Family Fleet)
+            renderFleetGrid(totalFleetVal, totalFleetUpkeep);
+
+            // Update Window 6 Waterfall
+            document.getElementById('wfGrossVaultYield').textContent = '+' + fmtUSD(vaultAnnualYield);
+            document.getElementById('wfBankYield').textContent = '+' + fmtUSD(totalBankInterest);
+            document.getElementById('wfCardCount').textContent = activeCards.length;
+            document.getElementById('wfCardsCost').textContent = '-' + fmtUSD(totalFamilyAnnualCap);
+            document.getElementById('wfHomesCost').textContent = '-' + fmtUSD(totalRealEstateEscrow);
+            document.getElementById('wfFleetCount').textContent = (appState.fleet || []).length;
+            document.getElementById('wfFleetCost').textContent = '-' + fmtUSD(totalFleetUpkeep);
+            document.getElementById('wfNetSurplus').textContent = fmtUSD(pureSurplusBeforePersonal) + ' / yr';
+            document.getElementById('wfMonthlySurplus').textContent = fmtUSD(pureSurplusBeforePersonal / 12) + ' / month';
+            const totalBurdenPct = totalAnnualYield > 0 ? (((totalFamilyAnnualCap + totalRealEstateEscrow + totalFleetUpkeep) / totalAnnualYield) * 100).toFixed(2) : '0.00';
+            document.getElementById('wfTotalBurdenPct').textContent = totalBurdenPct + '%';
+        }
+
+        function renderProjectionBars(principal, annualSurplus, netRate, years) {
+            const container = document.getElementById('wealthChartBars');
+            container.innerHTML = '';
+
+            let balance = principal;
+            let currentSurplus = annualSurplus;
+            const series = [];
+            for (let y = 1; y <= years; y++) {
+                balance += currentSurplus;
+                currentSurplus = currentSurplus * (1 + netRate * 0.5);
+                series.push({ year: y, val: balance });
+            }
+
+            const finalVal = series[series.length - 1].val;
+            document.getElementById('projFutureValue').textContent = fmtUSD(finalVal);
+
+            const maxVal = finalVal * 1.05;
+            series.forEach(item => {
+                const heightPct = Math.max(15, Math.min(100, (item.val / maxVal) * 100));
+                const bar = document.createElement('div');
+                bar.className = 'flex-1 min-w-[18px] h-full flex flex-col justify-end items-center group relative';
+                bar.innerHTML = `
+                    <div class="opacity-0 group-hover:opacity-100 transition bg-obsidian border border-royal-500/60 text-[10px] font-mono text-royal-200 px-1.5 py-0.5 rounded absolute -top-5 whitespace-nowrap z-10">
+                        Yr ${item.year}: ${fmtUSD(item.val)}
+                    </div>
+                    <div style="height: ${heightPct}%" class="w-full rounded-t bg-gradient-to-t from-royal-700/80 via-royal-500 to-emerald-400/90 group-hover:brightness-125 transition-all"></div>
+                    <span class="text-[9px] font-mono text-gray-400 mt-1">${item.year}y</span>
+                `;
+                container.appendChild(bar);
+            });
+        }
+
+        // =================================================================
+        // WINDOW 2 FUNCTIONS: BANK & MONEY MARKET ACCOUNTS MANAGER
+        // =================================================================
+        function renderBankAccounts(totalBal, totalInterest) {
+            const container = document.getElementById('bankAccountsContainer');
+            container.innerHTML = '';
+
+            const list = appState.bankAccounts || [];
+            const blendedApy = totalBal > 0 ? ((totalInterest / totalBal) * 100).toFixed(2) : '0.00';
+
+            document.getElementById('bankMetricCount').textContent = `${list.length} Accounts`;
+            document.getElementById('bankMetricBalance').textContent = fmtUSD(totalBal);
+            document.getElementById('bankMetricBlendedApy').textContent = `${blendedApy}% APY`;
+            document.getElementById('bankMetricAnnualInterest').textContent = '+' + fmtUSD(totalInterest) + ' / yr';
+            document.getElementById('bankMetricMonthlyInterest').textContent = '+' + fmtUSD(totalInterest / 12) + ' / mo passive';
+
+            list.forEach((acct, idx) => {
+                const annualYield = (Number(acct.balance) || 0) * ((Number(acct.apy) || 0) / 100);
+                const card = document.createElement('div');
+                card.className = 'metallic-card border border-royal-500/40 rounded-2xl p-5 shadow-xl flex flex-col justify-between space-y-4';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded bg-royal-500/20 text-royal-300 border border-royal-500/40">
+                                    ${acct.type}
+                                </span>
+                                <h3 class="font-serif font-bold text-base sm:text-lg text-white mt-1.5">${acct.institution}</h3>
+                            </div>
+                            <div class="w-9 h-9 rounded-xl bg-royal-500/20 border border-royal-400/30 flex items-center justify-center text-royal-300 shrink-0">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 grid grid-cols-3 gap-2 bg-obsidian/70 p-3 rounded-xl border border-slateBorder text-xs font-mono">
+                            <div>
+                                <span class="text-[10px] text-gray-400 block">PRINCIPAL BALANCE</span>
+                                <span class="text-white font-bold text-sm">${fmtUSD(acct.balance)}</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-gray-400 block">APY RATE</span>
+                                <span class="text-royal-300 font-bold text-sm">${Number(acct.apy).toFixed(2)}%</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-gray-400 block">ANNUAL INTEREST</span>
+                                <span class="text-emerald-400 font-bold text-sm">+${fmtUSD(annualYield)}</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i>${acct.notes || 'Institutional liquidity account titled under Smith Master Trust.'}
+                        </p>
+                    </div>
+
+                    <div class="pt-3 border-t border-slateBorder/80 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono">
+                        <span class="text-gray-400">ACCT •••• ${acct.acctNum || '8800'}</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openEditBankModal(${idx})" class="px-2.5 py-1 rounded bg-obsidian hover:border-royal-400 border border-slateBorder text-gray-200 transition">
+                                <i class="fa-solid fa-pen mr-1"></i>Edit Balance / APY
+                            </button>
+                            <button onclick="deleteBankAccount(${idx})" title="Remove Account" class="px-2.5 py-1 rounded bg-obsidian hover:border-rose-500/50 border border-slateBorder text-rose-400 transition">
+                                <i class="fa-solid fa-trash mr-1"></i>Remove
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function openAddBankModal() {
+            document.getElementById('editBankIndex').value = '-1';
+            document.getElementById('bankModalTitle').textContent = 'Add New Bank / Money Market Account';
+            document.getElementById('bankInstInput').value = '';
+            document.getElementById('bankTypeInput').value = 'Money Market Account (MMA)';
+            document.getElementById('bankNumInput').value = String(Math.floor(1000 + Math.random() * 8999));
+            document.getElementById('bankBalanceInput').value = '500000';
+            document.getElementById('bankApyInput').value = '4.85';
+            document.getElementById('bankNotesInput').value = 'Institutional Money Market Reserve • Same-Day Wire Liquidity';
+            document.getElementById('bankModal').classList.remove('hidden');
+        }
+
+        function openEditBankModal(idx) {
+            const b = appState.bankAccounts[idx];
+            document.getElementById('editBankIndex').value = idx;
+            document.getElementById('bankModalTitle').textContent = 'Edit Account — ' + b.institution;
+            document.getElementById('bankInstInput').value = b.institution;
+            document.getElementById('bankTypeInput').value = b.type;
+            document.getElementById('bankNumInput').value = b.acctNum;
+            document.getElementById('bankBalanceInput').value = b.balance;
+            document.getElementById('bankApyInput').value = b.apy;
+            document.getElementById('bankNotesInput').value = b.notes;
+            document.getElementById('bankModal').classList.remove('hidden');
+        }
+
+        function closeBankModal() {
+            document.getElementById('bankModal').classList.add('hidden');
+        }
+
+        function saveBankModal() {
+            const idx = parseInt(document.getElementById('editBankIndex').value);
+            const institution = document.getElementById('bankInstInput').value.trim() || 'Private Bank Money Market';
+            const type = document.getElementById('bankTypeInput').value;
+            const acctNum = document.getElementById('bankNumInput').value.trim() || '9001';
+            const balance = Math.max(0, parseFloat(document.getElementById('bankBalanceInput').value) || 0);
+            const apy = Math.max(0, parseFloat(document.getElementById('bankApyInput').value) || 0);
+            const notes = document.getElementById('bankNotesInput').value.trim();
+
+            if (idx >= 0 && idx < appState.bankAccounts.length) {
+                appState.bankAccounts[idx] = { ...appState.bankAccounts[idx], institution, type, acctNum, balance, apy, notes };
+            } else {
+                appState.bankAccounts.push({
+                    id: 'b_' + Date.now(),
+                    institution,
+                    type,
+                    acctNum,
+                    balance,
+                    apy,
+                    notes
+                });
+            }
+            saveState();
+            closeBankModal();
+            recalculateAll();
+        }
+
+        function deleteBankAccount(idx) {
+            appState.bankAccounts.splice(idx, 1);
+            saveState();
+            recalculateAll();
+        }
+
+        // =================================================================
+        // WINDOW 3 FUNCTIONS: FAMILY GIFTING CARDS ($19,000 CAP)
+        // =================================================================
+        function renderFamilyCards(totalAnnualYield) {
+            const container = document.getElementById('familyCardsContainer');
+            container.innerHTML = '';
+
+            const activeCount = appState.familyCards.filter(c => !c.frozen).length;
+            const maxAnnualBudget = activeCount * 19000;
+            const monthlyTotal = maxAnnualBudget / 12;
+            const yieldPct = totalAnnualYield > 0 ? ((maxAnnualBudget / totalAnnualYield) * 100).toFixed(2) : '0.00';
+
+            document.getElementById('cardsMetricCount').textContent = `${appState.familyCards.length} Recipients (${activeCount} Active)`;
+            document.getElementById('cardsMetricMaxAnnual').textContent = fmtUSD(maxAnnualBudget) + ' / yr';
+            document.getElementById('cardsMetricMonthly').textContent = fmtUSDExact(monthlyTotal) + ' / mo total';
+            document.getElementById('cardsMetricYieldPct').textContent = yieldPct + '% of Yield';
+
+            appState.familyCards.forEach((card, idx) => {
+                const ytd = Math.min(19000, Math.max(0, Number(card.ytdSpend) || 0));
+                const remaining = 19000 - ytd;
+                const pct = Math.min(100, Math.round((ytd / 19000) * 100));
+
+                const el = document.createElement('div');
+                el.className = `metallic-card border ${card.frozen ? 'border-rose-500/40 opacity-75' : 'border-royal-500/40'} rounded-2xl p-5 shadow-xl flex flex-col justify-between space-y-4`;
+                el.innerHTML = `
+                    <div>
+                        <!-- Top Metallic Card Header -->
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] font-mono uppercase tracking-widest text-royal-300">SMITH FAMILY OFFICE • PRIVATE CLIENT</span>
+                                    ${card.frozen 
+                                        ? '<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">FROZEN</span>'
+                                        : '<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">IRS $19K SAFE</span>'
+                                    }
+                                </div>
+                                <h3 class="font-serif font-bold text-lg text-white mt-1">${card.name}</h3>
+                                <p class="text-xs text-gray-400">${card.role}</p>
+                            </div>
+                            <div class="w-10 h-7 rounded bg-gradient-to-br from-royal-300 to-royal-600 opacity-90 flex items-center justify-center text-obsidian text-xs font-mono font-bold shadow">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                        </div>
+
+                        <!-- Card Number & Monthly Allowance -->
+                        <div class="mt-4 flex items-center justify-between text-xs font-mono text-gray-300 bg-obsidian/60 px-3 py-2 rounded-xl border border-slateBorder">
+                            <span>•••• •••• •••• ${card.cardNum || (4000 + idx * 117)}</span>
+                            <span class="text-royal-300 font-semibold">$1,583.33 / mo limit</span>
+                        </div>
+
+                        <!-- Interactive YTD Spend Slider -->
+                        <div class="mt-4">
+                            <div class="flex justify-between text-xs font-mono mb-1">
+                                <span class="text-gray-400">YTD Disbursed: <strong class="text-white">${fmtUSD(ytd)}</strong></span>
+                                <span class="text-emerald-400">Remaining Tax-Free: <strong>${fmtUSD(remaining)}</strong></span>
+                            </div>
+                            <input type="range" min="0" max="19000" step="250" value="${ytd}" ${card.frozen ? 'disabled' : ''} oninput="updateCardYtdSlider(${idx}, this.value)">
+                            <div class="w-full bg-obsidian h-2 rounded-full overflow-hidden border border-slateBorder mt-1.5">
+                                <div class="bg-gradient-to-r from-royal-500 to-emerald-400 h-full transition-all" style="width: ${pct}%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer Controls -->
+                    <div class="pt-3 border-t border-slateBorder/80 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono">
+                        <span class="text-gray-400"><i class="fa-solid fa-calendar-check text-royal-400 mr-1"></i>Cap: $19,000/yr • Auto-Reset Jan 1</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openEditCardModal(${idx})" class="px-2.5 py-1 rounded bg-obsidian hover:border-royal-500/50 border border-slateBorder text-gray-200 transition">
+                                <i class="fa-solid fa-pen mr-1"></i>Edit
+                            </button>
+                            <button onclick="toggleFreezeCard(${idx})" class="px-2.5 py-1 rounded bg-obsidian hover:border-royal-500/50 border border-slateBorder ${card.frozen ? 'text-emerald-400' : 'text-royal-300'} transition">
+                                <i class="fa-solid ${card.frozen ? 'fa-unlock' : 'fa-snowflake'} mr-1"></i>${card.frozen ? 'Unfreeze' : 'Freeze'}
+                            </button>
+                            <button onclick="deleteFamilyCard(${idx})" title="Remove Cardholder" class="px-2 py-1 rounded bg-obsidian hover:border-rose-500/50 border border-slateBorder text-rose-400 transition">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        function updateCardYtdSlider(idx, val) {
+            appState.familyCards[idx].ytdSpend = parseFloat(val);
+            saveState();
+            recalculateAll();
+        }
+
+        function toggleFreezeCard(idx) {
+            appState.familyCards[idx].frozen = !appState.familyCards[idx].frozen;
+            saveState();
+            recalculateAll();
+        }
+
+        function deleteFamilyCard(idx) {
+            appState.familyCards.splice(idx, 1);
+            saveState();
+            recalculateAll();
+        }
+
+        function openAddCardModal() {
+            document.getElementById('editCardIndex').value = '-1';
+            document.getElementById('cardModalTitle').textContent = 'Add New $19,000/Yr Family Office Cardholder';
+            document.getElementById('cardHolderNameInput').value = '';
+            document.getElementById('cardHolderRoleInput').value = 'Family / Friend • Annual Exclusion Recipient';
+            document.getElementById('cardHolderYtdInput').value = '0';
+            document.getElementById('cardModal').classList.remove('hidden');
+        }
+
+        function openEditCardModal(idx) {
+            const c = appState.familyCards[idx];
+            document.getElementById('editCardIndex').value = idx;
+            document.getElementById('cardModalTitle').textContent = 'Edit Cardholder — ' + c.name;
+            document.getElementById('cardHolderNameInput').value = c.name;
+            document.getElementById('cardHolderRoleInput').value = c.role;
+            document.getElementById('cardHolderYtdInput').value = c.ytdSpend;
+            document.getElementById('cardModal').classList.remove('hidden');
+        }
+
+        function closeCardModal() {
+            document.getElementById('cardModal').classList.add('hidden');
+        }
+
+        function saveCardModal() {
+            const idx = parseInt(document.getElementById('editCardIndex').value);
+            const name = document.getElementById('cardHolderNameInput').value.trim() || 'New Recipient';
+            const role = document.getElementById('cardHolderRoleInput').value.trim() || 'Designated Gift Recipient';
+            const ytd = Math.min(19000, Math.max(0, parseFloat(document.getElementById('cardHolderYtdInput').value) || 0));
+
+            if (idx >= 0 && idx < appState.familyCards.length) {
+                appState.familyCards[idx].name = name;
+                appState.familyCards[idx].role = role;
+                appState.familyCards[idx].ytdSpend = ytd;
+            } else {
+                appState.familyCards.push({
+                    id: 'c_' + Date.now(),
+                    name,
+                    role,
+                    ytdSpend: ytd,
+                    annualCap: 19000,
+                    frozen: false,
+                    cardNum: String(Math.floor(1000 + Math.random() * 8999))
+                });
+            }
+            saveState();
+            closeCardModal();
+            recalculateAll();
+        }
+
+        // =================================================================
+        // WINDOW 4 FUNCTIONS: ALL 5 TRUST-MANAGED HOUSES (REAL ESTATE LLC)
+        // =================================================================
+        function renderPropertiesGrid(totalVal, totalEscrow) {
+            const container = document.getElementById('propertiesGridContainer');
+            container.innerHTML = '';
+
+            document.getElementById('reMetricCount').textContent = `${appState.properties.length} Properties`;
+            document.getElementById('reMetricValuation').textContent = fmtUSD(totalVal);
+            document.getElementById('reMetricEscrow').textContent = fmtUSD(totalEscrow) + ' / yr';
+
+            appState.properties.forEach((prop, idx) => {
+                const card = document.createElement('div');
+                card.className = 'bg-obsidian/90 border border-slateBorder hover:border-royal-500/50 rounded-2xl p-5 flex flex-col justify-between transition shadow-lg';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-2">
+                            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-semibold">
+                                ${prop.badge || 'TRUST REAL ESTATE ASSET'}
+                            </span>
+                            <i class="fa-solid fa-house-lock text-royal-400"></i>
+                        </div>
+
+                        <h3 class="font-serif font-bold text-base text-white mt-1">${prop.title}</h3>
+                        <p class="text-xs text-royal-300 font-mono mt-0.5"><i class="fa-solid fa-location-dot mr-1"></i>${prop.location}</p>
+
+                        <div class="mt-3 p-3 rounded-xl bg-slateCard/90 border border-slateBorder space-y-1.5 text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Designated Occupant:</span>
+                                <span class="text-white font-medium text-right">${prop.occupant}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Trust Asset Valuation:</span>
+                                <span class="font-mono font-bold text-white">${fmtUSD(prop.valuation)}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Annual Tax/Ins/Upkeep Escrow:</span>
+                                <span class="font-mono font-semibold text-emerald-400">${fmtUSD(prop.annualEscrow)} / yr</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                            ${prop.notes}
+                        </p>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slateBorder flex items-center justify-between">
+                        <span class="text-[10px] font-mono text-emerald-400"><i class="fa-solid fa-shield-halved mr-1"></i>Probate &amp; Gift-Tax Exempt</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openEditPropertyModal(${idx})" class="px-3 py-1.5 rounded-lg bg-slateCard hover:border-royal-400 border border-slateBorder text-xs font-mono text-gray-200 transition">
+                                <i class="fa-solid fa-sliders mr-1"></i>Manage Deed / Escrow
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function openAddPropertyModal() {
+            document.getElementById('editPropIndex').value = '-1';
+            document.getElementById('propModalTitle').textContent = 'Add New Property to Smith Real Estate LLC';
+            document.getElementById('propNameInput').value = `Property #${appState.properties.length + 1}: Family Trust Residence`;
+            document.getElementById('propLocationInput').value = 'Private Estate Parcel';
+            document.getElementById('propOccupantInput').value = 'Designated Trust Beneficiary';
+            document.getElementById('propValueInput').value = '750000';
+            document.getElementById('propEscrowInput').value = '15000';
+            document.getElementById('propNotesInput').value = 'Titled 100% debt-free in Smith Real Estate LLC. Beneficiary occupies rent-free with zero imputed rent gift-tax exposure.';
+            document.getElementById('propertyModal').classList.remove('hidden');
+        }
+
+        function openEditPropertyModal(idx) {
+            const p = appState.properties[idx];
+            document.getElementById('editPropIndex').value = idx;
+            document.getElementById('propModalTitle').textContent = p.title;
+            document.getElementById('propNameInput').value = p.title;
+            document.getElementById('propLocationInput').value = p.location;
+            document.getElementById('propOccupantInput').value = p.occupant;
+            document.getElementById('propValueInput').value = p.valuation;
+            document.getElementById('propEscrowInput').value = p.annualEscrow;
+            document.getElementById('propNotesInput').value = p.notes;
+            document.getElementById('propertyModal').classList.remove('hidden');
+        }
+
+        function closePropertyModal() {
+            document.getElementById('propertyModal').classList.add('hidden');
+        }
+
+        function savePropertyModal() {
+            const idx = parseInt(document.getElementById('editPropIndex').value);
+            const title = document.getElementById('propNameInput').value.trim() || 'Trust Real Estate Asset';
+            const location = document.getElementById('propLocationInput').value.trim() || 'Private Location';
+            const occupant = document.getElementById('propOccupantInput').value.trim() || 'Trust Beneficiary';
+            const valuation = parseFloat(document.getElementById('propValueInput').value) || 0;
+            const annualEscrow = parseFloat(document.getElementById('propEscrowInput').value) || 0;
+            const notes = document.getElementById('propNotesInput').value.trim();
+
+            if (idx >= 0 && idx < appState.properties.length) {
+                appState.properties[idx] = {
+                    ...appState.properties[idx],
+                    title,
+                    location,
+                    occupant,
+                    valuation,
+                    annualEscrow,
+                    notes
+                };
+            } else {
+                appState.properties.push({
+                    id: 'p_' + Date.now(),
+                    title,
+                    location,
+                    occupant,
+                    valuation,
+                    annualEscrow,
+                    badge: 'BENEFICIARY RENT-FREE OCCUPANCY',
+                    notes
+                });
+            }
+            saveState();
+            closePropertyModal();
+            recalculateAll();
+        }
+
+        // =================================================================
+        // WINDOW 5 FUNCTIONS: SMITH FAMILY FLEET (ADD & REMOVE CARS)
+        // =================================================================
+        function renderFleetGrid(totalFleetVal, totalFleetUpkeep) {
+            const container = document.getElementById('fleetGridContainer');
+            container.innerHTML = '';
+
+            const fleetList = appState.fleet || [];
+            document.getElementById('fleetMetricCount').textContent = `${fleetList.length} Vehicles`;
+            document.getElementById('fleetMetricValue').textContent = fmtUSD(totalFleetVal);
+            document.getElementById('fleetMetricUpkeep').textContent = fmtUSD(totalFleetUpkeep) + ' / yr';
+
+            fleetList.forEach((car, idx) => {
+                const el = document.createElement('div');
+                el.className = 'metallic-card border border-royal-500/40 rounded-2xl p-5 flex flex-col justify-between transition shadow-lg';
+                el.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-2">
+                            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded bg-royal-500/20 text-royal-300 border border-royal-500/40 font-semibold">
+                                ${car.tag || 'TRUST FLEET VEHICLE'}
+                            </span>
+                            <i class="fa-solid fa-car-side text-royal-400"></i>
+                        </div>
+
+                        <h3 class="font-serif font-bold text-base text-white mt-1">${car.name}</h3>
+                        <p class="text-xs text-emerald-400 font-mono mt-0.5"><i class="fa-solid fa-id-badge mr-1"></i>Assigned Driver: ${car.driver}</p>
+
+                        <div class="mt-3 p-3 rounded-xl bg-obsidian/80 border border-slateBorder space-y-1.5 text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Fleet Asset Value:</span>
+                                <span class="font-mono font-bold text-white">${fmtUSD(car.value)}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Annual Ins. &amp; Maintenance:</span>
+                                <span class="font-mono font-semibold text-emerald-400">${fmtUSD(car.annualUpkeep)} / yr</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Title Status:</span>
+                                <span class="font-mono text-royal-300">100% Lien-Free LLC Title</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-gray-300 mt-3 leading-relaxed">
+                            ${car.notes || 'Titled inside Smith Fleet Holdings LLC with full commercial umbrella coverage.'}
+                        </p>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slateBorder flex items-center justify-between">
+                        <button onclick="openEditVehicleModal(${idx})" class="px-3 py-1.5 rounded-lg bg-obsidian hover:border-royal-400 border border-slateBorder text-xs font-mono text-gray-200 transition">
+                            <i class="fa-solid fa-pen mr-1"></i>Edit Vehicle
+                        </button>
+                        <button onclick="removeFleetVehicle(${idx})" class="px-3 py-1.5 rounded-lg bg-obsidian hover:border-rose-500/60 border border-slateBorder text-xs font-mono text-rose-400 transition">
+                            <i class="fa-solid fa-trash mr-1"></i>Remove Car
+                        </button>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        function openAddVehicleModal() {
+            document.getElementById('editVehicleIndex').value = '-1';
+            document.getElementById('vehicleModalTitle').textContent = 'Add Vehicle to Smith Family Fleet';
+            document.getElementById('vehNameInput').value = '';
+            document.getElementById('vehDriverInput').value = 'Family Beneficiary';
+            document.getElementById('vehTagInput').value = 'TRUST LUXURY VEHICLE';
+            document.getElementById('vehValueInput').value = '95000';
+            document.getElementById('vehInsInput').value = '4200';
+            document.getElementById('vehNotesInput').value = '100% Trust LLC Titled • Commercial Umbrella Insured & Maintained';
+            document.getElementById('vehicleModal').classList.remove('hidden');
+        }
+
+        function openEditVehicleModal(idx) {
+            const car = appState.fleet[idx];
+            document.getElementById('editVehicleIndex').value = idx;
+            document.getElementById('vehicleModalTitle').textContent = 'Edit Fleet Vehicle — ' + car.name;
+            document.getElementById('vehNameInput').value = car.name;
+            document.getElementById('vehDriverInput').value = car.driver;
+            document.getElementById('vehTagInput').value = car.tag;
+            document.getElementById('vehValueInput').value = car.value;
+            document.getElementById('vehInsInput').value = car.annualUpkeep;
+            document.getElementById('vehNotesInput').value = car.notes;
+            document.getElementById('vehicleModal').classList.remove('hidden');
+        }
+
+        function closeVehicleModal() {
+            document.getElementById('vehicleModal').classList.add('hidden');
+        }
+
+        function saveVehicleModal() {
+            const idx = parseInt(document.getElementById('editVehicleIndex').value);
+            const name = document.getElementById('vehNameInput').value.trim() || '2026 Luxury Fleet Vehicle';
+            const driver = document.getElementById('vehDriverInput').value.trim() || 'Trust Beneficiary';
+            const tag = document.getElementById('vehTagInput').value.trim().toUpperCase() || 'FAMILY FLEET ASSET';
+            const value = Math.max(0, parseFloat(document.getElementById('vehValueInput').value) || 0);
+            const annualUpkeep = Math.max(0, parseFloat(document.getElementById('vehInsInput').value) || 0);
+            const notes = document.getElementById('vehNotesInput').value.trim();
+
+            if (idx >= 0 && idx < appState.fleet.length) {
+                appState.fleet[idx] = { ...appState.fleet[idx], name, driver, tag, value, annualUpkeep, notes };
+            } else {
+                appState.fleet.push({
+                    id: 'v_' + Date.now(),
+                    name,
+                    driver,
+                    tag,
+                    value,
+                    annualUpkeep,
+                    notes
+                });
+            }
+            saveState();
+            closeVehicleModal();
+            recalculateAll();
+        }
+
+        function removeFleetVehicle(idx) {
+            appState.fleet.splice(idx, 1);
+            saveState();
+            recalculateAll();
+        }
+
+        // =================================================================
+        // WINDOW 6 FUNCTIONS: SMITH BEVERAGES LLC ("SMITH'S POP")
+        // =================================================================
+        function updateBeverageMetrics() {
+            const cans = parseInt(document.getElementById('cansSoldSlider').value);
+            const annualGross = cans * 12 * 3.50;
+            const mediaSponsorship = 60000; // $5,000/mo to Smith Media LLC
+            const netProfit = (annualGross * 0.28) - mediaSponsorship;
+
+            document.getElementById('cansSoldLabel').textContent = cans.toLocaleString() + ' cans/mo';
+            document.getElementById('bevAnnualRev').textContent = fmtUSD(annualGross);
+            document.getElementById('bevAnnualProfit').textContent = fmtUSD(netProfit) + ' / yr';
+        }
+
+        // Modal Handlers
+        function openInstallModal() {
+            document.getElementById('installModal').classList.remove('hidden');
+        }
+        function closeInstallModal() {
+            document.getElementById('installModal').classList.add('hidden');
+        }
+
+        // Self-Contained HTML File Downloader for Offline Mobile Use
+        function downloadStandaloneApp() {
+            const htmlContent = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Anthony_Smith_Master_Trust.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Initialize App on Window Load
+        window.onload = function() {
+            loadState();
+            syncSlidersFromState();
+            recalculateAll();
+            updateBeverageMetrics();
+        };
+    </script>
+
+</body>
+</html>
